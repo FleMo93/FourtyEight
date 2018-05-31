@@ -7,22 +7,24 @@ using UnityEngine.UI;
 public class scr_UI_Infobox : MonoBehaviour {
 
     public so_DataSet DataSet;
+    public scr_DataSet LocalDataSet;
     public Image Icon;
     public Text Name;
     public Text Description;
     public List<Attribute> Attributes;
     List<so_DataSet.Attribute> attToShow;
 
-    // Use this for initialization
-    void Start () {
+    private void OnEnable()
+    {
+        Debug.Log("Awake called.");
         Icon.sprite = DataSet.MainIcon;
         Name.text = DataSet.Name;
         Description.text = DataSet.Desctription;
         attToShow = DataSet.Attributes.ToArray().Where(x => x.UiOrder != 999).OrderBy(x => x.UiOrder).Take(6).ToList();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
         for (int i = 0; i < Attributes.Count; i++)
         {
             if (i < attToShow.Count)

@@ -2,19 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TomekScriptTest : MonoBehaviour, I_IClickable {
+public class TomekScriptTest1 : MonoBehaviour {
 
     public so_DataSet Data;
-
-    public scr_DataSet GetScrDataSet()
-    {
-        return null;
-    }
-
-    public so_DataSet GetSoDataSet()
-    {
-        return Data;
-    }
 
     // Use this for initialization
     void Start () {
