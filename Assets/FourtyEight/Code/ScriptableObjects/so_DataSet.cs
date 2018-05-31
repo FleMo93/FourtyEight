@@ -24,5 +24,6 @@ public class so_DataSet : ScriptableObject {
         public Sprite Icon;
         public float Value;
         public int UiOrder = 999;
+        public bool TakeFromLocalDataSet = true;
     }
 }
