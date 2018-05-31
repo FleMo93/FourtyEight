@@ -10,6 +10,7 @@ public class scr_LevelManager : MonoBehaviour {
 
     public GameObject basicEmpty;
     public GameObject baseTile;
+    public GameObject baseTile_ground;
 
     public Texture2D Img_LevelInput;
 

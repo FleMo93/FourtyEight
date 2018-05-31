@@ -22,7 +22,7 @@ public class scr_UI_InfoboxPopUp : MonoBehaviour {
 
             if (Physics.Raycast(ray, out hit, 9999))
             {
-                Debug.Log("hit -> " + hit.collider.gameObject.GetComponent<scr_IClickable>().IsClickable);
+                Debug.Log("hit -> " + hit.collider.gameObject.GetComponent<I_IClickable>());
             }
             else
             {
