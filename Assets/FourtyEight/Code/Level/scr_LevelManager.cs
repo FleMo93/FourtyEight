@@ -44,6 +44,7 @@ public class scr_LevelManager : MonoBehaviour {
         currentLevel = currentLevelParent.AddComponent<scr_Level>();
         currentLevelParent.name = "Terrain";
         currentLevel.InitLevel(TERRAINWITH, TERRAINHEIGHT, baseTile, currentLevelParent, this, Img_LevelInput);
+        currentLevel.ConstructBorder();
     }
     
 

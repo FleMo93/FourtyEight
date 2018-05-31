@@ -15,9 +15,15 @@ MonoBehaviour:
   Desctription: Extracts Iron
   MainIcon: {fileID: 0}
   Attributes:
-  - Name: Iron to gain
+  - Name: Iron per second
     Icon: {fileID: 21300000, guid: e848373f02b746e4aa17b1003e005b02, type: 3}
     Value: 10
-  - Name: Tick until gain
+    UiOrder: 999
+  - Name: Health
     Icon: {fileID: 21300000, guid: e848373f02b746e4aa17b1003e005b02, type: 3}
     Value: 10
+    UiOrder: 999
+  - Name: Maximum Health
+    Icon: {fileID: 21300000, guid: e848373f02b746e4aa17b1003e005b02, type: 3}
+    Value: 10
+    UiOrder: 999
