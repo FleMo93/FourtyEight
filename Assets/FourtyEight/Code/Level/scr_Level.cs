@@ -5,17 +5,6 @@ using UnityEngine;
 
 public class scr_Level : MonoBehaviour
 {
-    // 0-10 RESERVED
-    // 0 = air
-    // 11 = Grass (walkable)
-    // 12 = Earth/Ground (the Dirt we walk upon) like grass
-    // 13 = Mountain (minable blocks)
-    // 14 = Ore_Stone
-    // 15 = Ore_Coal
-    // 16 = Ore_Iron
-    // 17 = Ore_Crystal_Dida
-    // 18 = Ore_Crystal_Gale
-
 
     int TerrainHeight = 32;
     int TerrainWidth = 64;
@@ -33,7 +22,32 @@ public class scr_Level : MonoBehaviour
     Color32 Color_Ore_Dida = new Color32(255, 0, 255, 255);
     Color32 Color_Ore_Gale = new Color32(255, 255, 0, 255);
 
+    /// <summary>
+    /// 0-10 RESERVED
+    /// 0 = air
+    /// 11 = Grass (walkable)
+    /// 12 = Earth/Ground (the Dirt we walk upon) like grass
+    /// 13 = Mountain (minable blocks)
+    /// 14 = Ore_Stone
+    /// 15 = Ore_Coal
+    /// 16 = Ore_Iron
+    /// 17 = Ore_Crystal_Dida
+    /// 18 = Ore_Crystal_Gale
+    /// </summary>
     byte[,] above; // layer with Mountain and Buildings
+
+    /// <summary>
+    /// 0-10 RESERVED
+    /// 0 = air
+    /// 11 = Grass (walkable)
+    /// 12 = Earth/Ground (the Dirt we walk upon) like grass
+    /// 13 = Mountain (minable blocks)
+    /// 14 = Ore_Stone
+    /// 15 = Ore_Coal
+    /// 16 = Ore_Iron
+    /// 17 = Ore_Crystal_Dida
+    /// 18 = Ore_Crystal_Gale
+    /// </summary>
     byte[,] ground;// (unminable Layer)
 
     // holds the bases for Mountaing
@@ -47,12 +61,14 @@ public class scr_Level : MonoBehaviour
     Renderer[,] ground_ren;// (unminable Layer)
 
     scr_LevelManager lvlManager;
+    GameObject baseTile;
 
-    internal void InitLevel(int withd, int height, GameObject baseTile, GameObject parentElement, scr_LevelManager lMng, Texture2D inputLayout = null)
+    internal void InitLevel(int withd, int height,GameObject pBaseTile, GameObject parentElement, scr_LevelManager lMng, Texture2D inputLayout = null)
     {
         TerrainHeight = height;
         TerrainWidth = withd;
         lvlManager = lMng;
+        baseTile = pBaseTile;
 
         ground = new byte[TerrainWidth, TerrainHeight];
         above = new byte[TerrainWidth, TerrainHeight];
@@ -160,7 +176,7 @@ public class scr_Level : MonoBehaviour
                     above_trs[j, i] = Instantiate(lvlManager.TransList_Stone[0]);
                     above_trs[j, i].transform.position = new Vector3((-TerrainWidth / 2) + j, 0, (-TerrainHeight / 2) + i);
                     above_msh[j, i] = null;// above_trs[j, i].GetComponent<MeshFilter>();
-                    above_col[j, i] = null;// above_trs[j, i].GetComponent<BoxCollider>();
+                    above_col[j, i] = above_trs[j, i].GetComponent<BoxCollider>();
                     above_ren[j, i] = null;//above_trs[j, i].GetComponent<Renderer>();
 
                     Transform tempT_g = ground_trs[j, i];
@@ -168,7 +184,7 @@ public class scr_Level : MonoBehaviour
                     ground_trs[j, i] = Instantiate(lvlManager.TransList_Stone_ground[0]);
                     ground_trs[j, i].transform.position = new Vector3((-TerrainWidth / 2) + j, 0, (-TerrainHeight / 2) + i);
                     ground_msh[j, i] = null;//ground_trs[j, i].GetComponent<MeshFilter>();
-                    ground_col[j, i] = null;//ground_trs[j, i].GetComponent<BoxCollider>();
+                    ground_col[j, i] = ground_trs[j, i].GetComponent<BoxCollider>();
                     ground_ren[j, i] = null;//ground_trs[j, i].GetComponent<Renderer>();
 
                 }
@@ -182,7 +198,7 @@ public class scr_Level : MonoBehaviour
                     above_trs[j, i] = Instantiate(lvlManager.TransList_Coal[0]);
                     above_trs[j, i].transform.position = new Vector3((-TerrainWidth / 2) + j, 0, (-TerrainHeight / 2) + i);
                     above_msh[j, i] = null;// above_trs[j, i].GetComponent<MeshFilter>();
-                    above_col[j, i] = null;// above_trs[j, i].GetComponent<BoxCollider>();
+                    above_col[j, i] = above_trs[j, i].GetComponent<BoxCollider>();
                     above_ren[j, i] = null;//above_trs[j, i].GetComponent<Renderer>();
 
                     Transform tempT_g = ground_trs[j, i];
@@ -190,7 +206,7 @@ public class scr_Level : MonoBehaviour
                     ground_trs[j, i] = Instantiate(lvlManager.TransList_Coal_ground[0]);
                     ground_trs[j, i].transform.position = new Vector3((-TerrainWidth / 2) + j, 0, (-TerrainHeight / 2) + i);
                     ground_msh[j, i] = null;//ground_trs[j, i].GetComponent<MeshFilter>();
-                    ground_col[j, i] = null;//ground_trs[j, i].GetComponent<BoxCollider>();
+                    ground_col[j, i] = ground_trs[j, i].GetComponent<BoxCollider>();
                     ground_ren[j, i] = null;//ground_trs[j, i].GetComponent<Renderer>();
 
                 }
@@ -204,7 +220,7 @@ public class scr_Level : MonoBehaviour
                     above_trs[j, i] = Instantiate(lvlManager.TransList_Iron[0]);
                     above_trs[j, i].transform.position = new Vector3((-TerrainWidth / 2) + j, 0, (-TerrainHeight / 2) + i);
                     above_msh[j, i] = null;// above_trs[j, i].GetComponent<MeshFilter>();
-                    above_col[j, i] = null;// above_trs[j, i].GetComponent<BoxCollider>();
+                    above_col[j, i] = above_trs[j, i].GetComponent<BoxCollider>();
                     above_ren[j, i] = null;//above_trs[j, i].GetComponent<Renderer>();
 
                     Transform tempT_g = ground_trs[j, i];
@@ -212,7 +228,7 @@ public class scr_Level : MonoBehaviour
                     ground_trs[j, i] = Instantiate(lvlManager.TransList_Iron_ground[0]);
                     ground_trs[j, i].transform.position = new Vector3((-TerrainWidth / 2) + j, 0, (-TerrainHeight / 2) + i);
                     ground_msh[j, i] = null;//ground_trs[j, i].GetComponent<MeshFilter>();
-                    ground_col[j, i] = null;//ground_trs[j, i].GetComponent<BoxCollider>();
+                    ground_col[j, i] = ground_trs[j, i].GetComponent<BoxCollider>();
                     ground_ren[j, i] = null;//ground_trs[j, i].GetComponent<Renderer>();
 
                 }
@@ -226,7 +242,7 @@ public class scr_Level : MonoBehaviour
                     above_trs[j, i] = Instantiate(lvlManager.TransList_Dida[0]);
                     above_trs[j, i].transform.position = new Vector3((-TerrainWidth / 2) + j, 0, (-TerrainHeight / 2) + i);
                     above_msh[j, i] = null;// above_trs[j, i].GetComponent<MeshFilter>();
-                    above_col[j, i] = null;// above_trs[j, i].GetComponent<BoxCollider>();
+                    above_col[j, i] = above_trs[j, i].GetComponent<BoxCollider>();
                     above_ren[j, i] = null;//above_trs[j, i].GetComponent<Renderer>();
 
                     Transform tempT_g = ground_trs[j, i];
@@ -234,7 +250,7 @@ public class scr_Level : MonoBehaviour
                     ground_trs[j, i] = Instantiate(lvlManager.TransList_Dida_ground[0]);
                     ground_trs[j, i].transform.position = new Vector3((-TerrainWidth / 2) + j, 0, (-TerrainHeight / 2) + i);
                     ground_msh[j, i] = null;//ground_trs[j, i].GetComponent<MeshFilter>();
-                    ground_col[j, i] = null;//ground_trs[j, i].GetComponent<BoxCollider>();
+                    ground_col[j, i] = ground_trs[j, i].GetComponent<BoxCollider>();
                     ground_ren[j, i] = null;//ground_trs[j, i].GetComponent<Renderer>();
 
                 }
@@ -248,7 +264,7 @@ public class scr_Level : MonoBehaviour
                     above_trs[j, i] = Instantiate(lvlManager.TransList_Gale[0]);
                     above_trs[j, i].transform.position = new Vector3((-TerrainWidth / 2) + j, 0, (-TerrainHeight / 2) + i);
                     above_msh[j, i] = null;// above_trs[j, i].GetComponent<MeshFilter>();
-                    above_col[j, i] = null;// above_trs[j, i].GetComponent<BoxCollider>();
+                    above_col[j, i] = above_trs[j, i].GetComponent<BoxCollider>();
                     above_ren[j, i] = null;//above_trs[j, i].GetComponent<Renderer>();
 
                     Transform tempT_g = ground_trs[j, i];
@@ -256,7 +272,7 @@ public class scr_Level : MonoBehaviour
                     ground_trs[j, i] = Instantiate(lvlManager.TransList_Gale_ground[0]);
                     ground_trs[j, i].transform.position = new Vector3((-TerrainWidth / 2) + j, 0, (-TerrainHeight / 2) + i);
                     ground_msh[j, i] = null;//ground_trs[j, i].GetComponent<MeshFilter>();
-                    ground_col[j, i] = null;//ground_trs[j, i].GetComponent<BoxCollider>();
+                    ground_col[j, i] = ground_trs[j, i].GetComponent<BoxCollider>();
                     ground_ren[j, i] = null;//ground_trs[j, i].GetComponent<Renderer>();
 
                 }
@@ -284,13 +300,13 @@ public class scr_Level : MonoBehaviour
 
         if (isAbove)
         {
-            above[x, y] = Input;
             UpdateMesh(x, y);
+            above[x, y] = Input;
         }
         else
         {
-            ground[x, y] = Input;
             UpdateMesh(x, y, false);
+            ground[x, y] = Input;
         }
     }
 
@@ -375,13 +391,44 @@ public class scr_Level : MonoBehaviour
         //    Debug.LogError("CURRENTLY NOT SUPPOERTED");
         //}
 
-        if (targetPlattfomr[x, y] == 0)
+            if (targetPlattfomr[x, y] == 0 ||
+            targetPlattfomr[x, y] == 14 ||
+    targetPlattfomr[x, y] == 15 ||
+    targetPlattfomr[x, y] == 16 ||
+    targetPlattfomr[x, y] == 17 ||
+    targetPlattfomr[x, y] == 18)
+            {
+
+                Transform tempT = above_trs[x, y];
+                Transform tempTParentEle = tempT.parent;
+                Destroy(tempT.gameObject);
+                
+                above_trs[x, y] = Instantiate(baseTile, new Vector3(x - (TerrainWidth / 2), 0, y - (TerrainHeight / 2)), Quaternion.identity).transform;
+                above_msh[x, y] = above_trs[x, y].GetComponent<MeshFilter>();
+                above_msh[x, y].mesh = null;
+                above_col[x, y] = above_trs[x, y].GetComponent<BoxCollider>();
+                above_col[x, y].enabled = false;
+                above_ren[x, y] = above_trs[x, y].GetComponent<Renderer>();
+                above_trs[x, y].parent = tempTParentEle;
+
+            }
+
+            if (above_msh[x, y] != null)
+            {
+                if (above_msh[x, y].mesh != null)
+                {
+                    above_msh[x, y].mesh = null;
+                }
+            }
+        if (above_col[x, y] != null)
         {
-            above_msh[x, y].mesh = null;
             above_col[x, y].enabled = false;
         }
+
         else
         {
+
+
             above_msh[x, y].mesh = lvlManager.MeshList_singles[0].mesh;
             above_col[x, y].enabled = true;
         }
