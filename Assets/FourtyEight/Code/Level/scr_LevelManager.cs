@@ -16,7 +16,7 @@ public class scr_LevelManager : MonoBehaviour {
     const int TERRAINHEIGHT = 32;
     const int TERRAINWITH = 64;
 
-    public scr_Level currentLevel = new scr_Level();
+    public scr_Level currentLevel;
     GameObject currentLevelParent;
 
     public List<MeshFilter> MeshList_singles;
@@ -40,8 +40,8 @@ public class scr_LevelManager : MonoBehaviour {
             return;
         }
         inst = this;
-        currentLevel = new scr_Level();
         currentLevelParent = Instantiate(basicEmpty);
+        currentLevel = currentLevelParent.AddComponent<scr_Level>();
         currentLevelParent.name = "Terrain";
         currentLevel.InitLevel(TERRAINWITH, TERRAINHEIGHT, baseTile, currentLevelParent, this, Img_LevelInput);
     }
