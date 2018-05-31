@@ -13,7 +13,7 @@ public class Extractor : MonoBehaviour
     [SerializeField]
     private Resources resourceToTake = Resources.Coal;
 
-    private so_DataSet.Attribute ironPerSecond;
+    private so_DataSet.Attribute ressourcePerSecond;
     private so_DataSet.Attribute health;
     private so_DataSet.Attribute healthMax;
 
@@ -22,8 +22,31 @@ public class Extractor : MonoBehaviour
 
     void Start ()
     {
-        
-        ironPerSecond = _Stats.Attributes.Find(x => x.Name == "Iron per second");
+        string ressource = string.Empty;
+
+        switch(resourceToTake)
+        {
+            case Resources.Coal:
+                ressource = "Coal";
+                break;
+            case Resources.Crystal_Dida:
+                ressource = "Dida";
+                break;
+
+            case Resources.Crystal_Gale:
+                ressource = "Gale";
+                break;
+
+            case Resources.Iron:
+                ressource = "Iron";
+                break;
+
+            case Resources.Stone:
+                ressource = "Stone";
+                break;
+        }
+
+        ressourcePerSecond = _Stats.Attributes.Find(x => x.Name == ressource + " per second");
         health = _Stats.Attributes.Find(x => x.Name == "Health");
         healthMax = _Stats.Attributes.Find(x => x.Name == "Maximum Health");
         timeLeft = 1;
@@ -40,7 +63,27 @@ public class Extractor : MonoBehaviour
 
         if(timeLeft <= 0)
         {
-            _StatsGlobal.Iron += (int)ironPerSecond.Value;
+            switch(resourceToTake)
+            {
+                case Resources.Coal:
+                    _StatsGlobal.Iron += (int)ressourcePerSecond.Value;
+                    break;
+                case Resources.Crystal_Dida:
+                    _StatsGlobal.CrystelDida += (int)ressourcePerSecond.Value;
+                    break;
+
+                case Resources.Crystal_Gale:
+                    _StatsGlobal.CrystelGale += (int)ressourcePerSecond.Value;
+                    break;
+
+                case Resources.Iron:
+                    _StatsGlobal.Iron += (int)ressourcePerSecond.Value;
+                    break;
+
+                case Resources.Stone:
+                    _StatsGlobal.Stone += (int)ressourcePerSecond.Value;
+                    break;
+            }
         }
     }
 }
