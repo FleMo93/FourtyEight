@@ -22,16 +22,13 @@ public class scr_UI_InfoboxPopUp : MonoBehaviour {
 
             if (Physics.Raycast(ray, out hit, 9999))
             {
-<<<<<<< HEAD
                 Debug.Log("hit -> " + hit.collider.gameObject.GetComponent<I_IClickable>());
-=======
                 if (hit.collider.gameObject.GetComponent<I_IClickable>() != null)
                 {
                     InfoBox.GetComponent<scr_UI_Infobox>().DataSet = hit.collider.gameObject.GetComponent<I_IClickable>().GetSoDataSet();
                     InfoBox.GetComponent<scr_UI_Infobox>().LocalDataSet = hit.collider.gameObject.GetComponent<I_IClickable>().GetScrDataSet();
                     InfoBox.SetActive(true);
                 }
->>>>>>> bd64389ba125ff4e5fd4e4dac24fd580b8e34b05
             }
             else
             {
