@@ -7,21 +7,36 @@ public class scr_Level : MonoBehaviour
 {
     // 0-10 RESERVED
     // 0 = air
-    // 11 = Earth/Ground
-    // 12 = Mountain
+    // 11 = Grass (walkable)
+    // 12 = Earth/Ground (the Dirt we walk upon) like grass
+    // 13 = Mountain (minable blocks)
+    // 14 = Ore_Stone
+    // 15 = Ore_Coal
+    // 16 = Ore_Iron
+    // 17 = Ore_Crystal_Dida
+    // 18 = Ore_Crystal_Gale
+
 
     int TerrainHeight = 32;
     int TerrainWidth = 64;
 
     int BorderHeight = 6;
 
-    Color32 groundGreen = new Color32(98, 176, 70, 255);
-    Color32 groundGray = new Color32();
-    Color32 groundDarkGreen = new Color32();
-    Color32 groundBlack = new Color32();
+    Color32 Color_Grass = new Color32(98, 176, 70, 255);
+    Color32 Color_Dirt = new Color32(233, 191, 128, 255);
+    Color32 Color_DarkGreen = new Color32(0, 117, 62, 255);
+    Color32 Color_Black = new Color32(0, 0, 0, 255);
+
+    Color32 Color_Ore_Stone = new Color32(73, 73, 73, 255);
+    Color32 Color_Ore_Coal = new Color32(39, 39, 39, 255);
+    Color32 Color_Ore_Iron = new Color32(86, 52, 0, 255);
+    Color32 Color_Ore_Dida = new Color32(255, 0, 255, 255);
+    Color32 Color_Ore_Gale = new Color32(255, 255, 0, 255);
 
     byte[,] above; // layer with Mountain and Buildings
     byte[,] ground;// (unminable Layer)
+
+    // holds the bases for Mountaing
     Transform[,] above_trs; // layer with Mountain and Buildings
     Transform[,] ground_trs;// (unminable Layer) 
     MeshFilter[,] above_msh; // layer with Mountain and Buildings
@@ -97,16 +112,16 @@ public class scr_Level : MonoBehaviour
         BoxCollider Border_bottom = gameObject.AddComponent<BoxCollider>();
 
         Border_left.center = new Vector3(-(TerrainWidth / 2 + 1), 0, 0);
-        Border_left.size = new Vector3(1, BorderHeight, TerrainHeight+2);
+        Border_left.size = new Vector3(1, BorderHeight, TerrainHeight + 2);
 
         Border_top.center = new Vector3(0, 0, TerrainHeight / 2 + 1);
-        Border_top.size = new Vector3(TerrainWidth+2, BorderHeight, 1);
+        Border_top.size = new Vector3(TerrainWidth + 2, BorderHeight, 1);
 
         Border_right.center = new Vector3(TerrainWidth / 2 + 1, 0, 0);
-        Border_right.size = new Vector3(1, BorderHeight, TerrainHeight+2);
+        Border_right.size = new Vector3(1, BorderHeight, TerrainHeight + 2);
 
         Border_bottom.center = new Vector3(0, 0, -(TerrainHeight / 2 + 1));
-        Border_bottom.size = new Vector3(TerrainWidth+2, BorderHeight, 1);
+        Border_bottom.size = new Vector3(TerrainWidth + 2, BorderHeight, 1);
 
     }
 
@@ -121,11 +136,129 @@ public class scr_Level : MonoBehaviour
             {
                 above_ren[j, i].material.color = imgCol[j + i * TerrainWidth];
                 ground_ren[j, i].material.color = new Color32(139, 69, 19, 0);
-                if (imgCol[j + i * TerrainWidth].isSameAs(groundGreen))
+                // if color is green or brown, make dirt or grass
+                if (imgCol[j + i * TerrainWidth].isSameAs(Color_Grass) ||
+                    imgCol[j + i * TerrainWidth].isSameAs(Color_Dirt))
                 {
-                    ground_ren[j, i].material.color = groundGreen;
+                    above[j, i] = 0;
+                    ground[j, i] = 11;
+                    if (imgCol[j + i * TerrainWidth].isSameAs(Color_Dirt))
+                    {
+                        ground[j, i] = 12;
+                    }
+                    ground_ren[j, i].material.color = Color_Grass;
                     above_col[j, i].enabled = false;
                     above_msh[j, i].mesh = null;
+                }
+                else if (imgCol[j + i * TerrainWidth].isSameAs(Color_Ore_Stone))
+                {
+                    above[j, i] = 14;
+                    ground[j, i] = 14;
+
+                    Transform tempT = above_trs[j, i];
+                    Destroy(tempT.gameObject);
+                    above_trs[j, i] = Instantiate(lvlManager.TransList_Stone[0]);
+                    above_trs[j, i].transform.position = new Vector3((-TerrainWidth / 2) + j, 0, (-TerrainHeight / 2) + i);
+                    above_msh[j, i] = null;// above_trs[j, i].GetComponent<MeshFilter>();
+                    above_col[j, i] = null;// above_trs[j, i].GetComponent<BoxCollider>();
+                    above_ren[j, i] = null;//above_trs[j, i].GetComponent<Renderer>();
+
+                    Transform tempT_g = ground_trs[j, i];
+                    Destroy(tempT_g.gameObject);
+                    ground_trs[j, i] = Instantiate(lvlManager.TransList_Stone_ground[0]);
+                    ground_trs[j, i].transform.position = new Vector3((-TerrainWidth / 2) + j, 0, (-TerrainHeight / 2) + i);
+                    ground_msh[j, i] = null;//ground_trs[j, i].GetComponent<MeshFilter>();
+                    ground_col[j, i] = null;//ground_trs[j, i].GetComponent<BoxCollider>();
+                    ground_ren[j, i] = null;//ground_trs[j, i].GetComponent<Renderer>();
+
+                }
+                else if (imgCol[j + i * TerrainWidth].isSameAs(Color_Ore_Coal))
+                {
+                    above[j, i] = 15;
+                    ground[j, i] = 15;
+
+                    Transform tempT = above_trs[j, i];
+                    Destroy(tempT.gameObject);
+                    above_trs[j, i] = Instantiate(lvlManager.TransList_Coal[0]);
+                    above_trs[j, i].transform.position = new Vector3((-TerrainWidth / 2) + j, 0, (-TerrainHeight / 2) + i);
+                    above_msh[j, i] = null;// above_trs[j, i].GetComponent<MeshFilter>();
+                    above_col[j, i] = null;// above_trs[j, i].GetComponent<BoxCollider>();
+                    above_ren[j, i] = null;//above_trs[j, i].GetComponent<Renderer>();
+
+                    Transform tempT_g = ground_trs[j, i];
+                    Destroy(tempT_g.gameObject);
+                    ground_trs[j, i] = Instantiate(lvlManager.TransList_Coal_ground[0]);
+                    ground_trs[j, i].transform.position = new Vector3((-TerrainWidth / 2) + j, 0, (-TerrainHeight / 2) + i);
+                    ground_msh[j, i] = null;//ground_trs[j, i].GetComponent<MeshFilter>();
+                    ground_col[j, i] = null;//ground_trs[j, i].GetComponent<BoxCollider>();
+                    ground_ren[j, i] = null;//ground_trs[j, i].GetComponent<Renderer>();
+
+                }
+                else if (imgCol[j + i * TerrainWidth].isSameAs(Color_Ore_Iron))
+                {
+                    above[j, i] = 16;
+                    ground[j, i] = 16;
+
+                    Transform tempT = above_trs[j, i];
+                    Destroy(tempT.gameObject);
+                    above_trs[j, i] = Instantiate(lvlManager.TransList_Iron[0]);
+                    above_trs[j, i].transform.position = new Vector3((-TerrainWidth / 2) + j, 0, (-TerrainHeight / 2) + i);
+                    above_msh[j, i] = null;// above_trs[j, i].GetComponent<MeshFilter>();
+                    above_col[j, i] = null;// above_trs[j, i].GetComponent<BoxCollider>();
+                    above_ren[j, i] = null;//above_trs[j, i].GetComponent<Renderer>();
+
+                    Transform tempT_g = ground_trs[j, i];
+                    Destroy(tempT_g.gameObject);
+                    ground_trs[j, i] = Instantiate(lvlManager.TransList_Iron_ground[0]);
+                    ground_trs[j, i].transform.position = new Vector3((-TerrainWidth / 2) + j, 0, (-TerrainHeight / 2) + i);
+                    ground_msh[j, i] = null;//ground_trs[j, i].GetComponent<MeshFilter>();
+                    ground_col[j, i] = null;//ground_trs[j, i].GetComponent<BoxCollider>();
+                    ground_ren[j, i] = null;//ground_trs[j, i].GetComponent<Renderer>();
+
+                }
+                else if (imgCol[j + i * TerrainWidth].isSameAs(Color_Ore_Dida))
+                {
+                    above[j, i] = 17;
+                    ground[j, i] = 17;
+
+                    Transform tempT = above_trs[j, i];
+                    Destroy(tempT.gameObject);
+                    above_trs[j, i] = Instantiate(lvlManager.TransList_Dida[0]);
+                    above_trs[j, i].transform.position = new Vector3((-TerrainWidth / 2) + j, 0, (-TerrainHeight / 2) + i);
+                    above_msh[j, i] = null;// above_trs[j, i].GetComponent<MeshFilter>();
+                    above_col[j, i] = null;// above_trs[j, i].GetComponent<BoxCollider>();
+                    above_ren[j, i] = null;//above_trs[j, i].GetComponent<Renderer>();
+
+                    Transform tempT_g = ground_trs[j, i];
+                    Destroy(tempT_g.gameObject);
+                    ground_trs[j, i] = Instantiate(lvlManager.TransList_Dida_ground[0]);
+                    ground_trs[j, i].transform.position = new Vector3((-TerrainWidth / 2) + j, 0, (-TerrainHeight / 2) + i);
+                    ground_msh[j, i] = null;//ground_trs[j, i].GetComponent<MeshFilter>();
+                    ground_col[j, i] = null;//ground_trs[j, i].GetComponent<BoxCollider>();
+                    ground_ren[j, i] = null;//ground_trs[j, i].GetComponent<Renderer>();
+
+                }
+                else if (imgCol[j + i * TerrainWidth].isSameAs(Color_Ore_Gale))
+                {
+                    above[j, i] = 17;
+                    ground[j, i] = 17;
+
+                    Transform tempT = above_trs[j, i];
+                    Destroy(tempT.gameObject);
+                    above_trs[j, i] = Instantiate(lvlManager.TransList_Gale[0]);
+                    above_trs[j, i].transform.position = new Vector3((-TerrainWidth / 2) + j, 0, (-TerrainHeight / 2) + i);
+                    above_msh[j, i] = null;// above_trs[j, i].GetComponent<MeshFilter>();
+                    above_col[j, i] = null;// above_trs[j, i].GetComponent<BoxCollider>();
+                    above_ren[j, i] = null;//above_trs[j, i].GetComponent<Renderer>();
+
+                    Transform tempT_g = ground_trs[j, i];
+                    Destroy(tempT_g.gameObject);
+                    ground_trs[j, i] = Instantiate(lvlManager.TransList_Gale_ground[0]);
+                    ground_trs[j, i].transform.position = new Vector3((-TerrainWidth / 2) + j, 0, (-TerrainHeight / 2) + i);
+                    ground_msh[j, i] = null;//ground_trs[j, i].GetComponent<MeshFilter>();
+                    ground_col[j, i] = null;//ground_trs[j, i].GetComponent<BoxCollider>();
+                    ground_ren[j, i] = null;//ground_trs[j, i].GetComponent<Renderer>();
+
                 }
             }
         }
@@ -146,6 +279,9 @@ public class scr_Level : MonoBehaviour
 
     public void SetTileByte(byte Input, int x, int y, bool isAbove = true)
     {
+        x = x + TerrainWidth / 2;
+        y = y + TerrainHeight / 2;
+
         if (isAbove)
         {
             above[x, y] = Input;

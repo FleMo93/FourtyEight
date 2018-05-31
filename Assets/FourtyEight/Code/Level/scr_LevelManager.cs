@@ -31,7 +31,20 @@ public class scr_LevelManager : MonoBehaviour {
     public List<MeshFilter> MeshList_innerCorners;
 
     public List<MeshFilter> MeshList_full;
-    
+
+    public List<Transform> TransList_Stone;
+    public List<Transform> TransList_Stone_ground;
+    public List<Transform> TransList_Coal;
+    public List<Transform> TransList_Coal_ground;
+    public List<Transform> TransList_Iron;
+    public List<Transform> TransList_Iron_ground;
+    public List<Transform> TransList_Dida; // lila
+    public List<Transform> TransList_Dida_ground; // lila
+    public List<Transform> TransList_Gale; // gelb
+    public List<Transform> TransList_Gale_ground; // gelb
+
+
+
     void Awake(){
 
         if (inst != null)
