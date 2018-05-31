@@ -11,6 +11,8 @@ public class scr_LevelManager : MonoBehaviour {
     public GameObject basicEmpty;
     public GameObject baseTile;
 
+    public Texture2D Img_LevelInput;
+
     const int TERRAINHEIGHT = 32;
     const int TERRAINWITH = 64;
 
@@ -41,7 +43,7 @@ public class scr_LevelManager : MonoBehaviour {
         currentLevel = new scr_Level();
         currentLevelParent = Instantiate(basicEmpty);
         currentLevelParent.name = "Terrain";
-        currentLevel.InitLevel(TERRAINWITH, TERRAINHEIGHT, baseTile, currentLevelParent, this);
+        currentLevel.InitLevel(TERRAINWITH, TERRAINHEIGHT, baseTile, currentLevelParent, this, Img_LevelInput);
     }
     
 
