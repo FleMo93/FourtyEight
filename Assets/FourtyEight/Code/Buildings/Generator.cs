@@ -57,4 +57,12 @@ public class Generator : MonoBehaviour
             timeLeft += 1;
         }
     }
+
+    private void OnDestroy()
+    {
+        if(lastEnergyState)
+        {
+            _StatsGlobal.Energy -= (int)createsEnergy.Value;
+        }
+    }
 }
