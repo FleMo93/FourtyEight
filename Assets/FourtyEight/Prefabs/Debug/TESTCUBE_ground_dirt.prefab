@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23470914893142310}
   - component: {fileID: 65918086673379440}
   m_Layer: 0
-  m_Name: TESTCUBE
+  m_Name: TESTCUBE_ground_dirt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

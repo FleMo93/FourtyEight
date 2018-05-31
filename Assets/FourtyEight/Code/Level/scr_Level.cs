@@ -13,6 +13,11 @@ public class scr_Level : MonoBehaviour
     int TerrainHeight = 32;
     int TerrainWidth = 64;
 
+    Color32 groundGreen = new Color32(98, 176, 70, 255);
+    Color32 groundGray = new Color32();
+    Color32 groundDarkGreen = new Color32();
+    Color32 groundBlack = new Color32();
+
     byte[,] above; // layer with Mountain and Buildings
     byte[,] ground;// (unminable Layer)
     Transform[,] above_trs; // layer with Mountain and Buildings
@@ -21,12 +26,13 @@ public class scr_Level : MonoBehaviour
     MeshFilter[,] ground_msh;// (unminable Layer)
     BoxCollider[,] above_col; // layer with Mountain and Buildings
     BoxCollider[,] ground_col;// (unminable Layer)
+    Renderer[,] above_ren; // layer with Mountain and Buildings
+    Renderer[,] ground_ren;// (unminable Layer)
 
     scr_LevelManager lvlManager;
 
-    internal void InitLevel(int withd, int height, GameObject baseTile, GameObject parentElement, scr_LevelManager lMng)
+    internal void InitLevel(int withd, int height, GameObject baseTile, GameObject parentElement, scr_LevelManager lMng, Texture2D inputLayout = null)
     {
-
         TerrainHeight = height;
         TerrainWidth = withd;
         lvlManager = lMng;
@@ -39,6 +45,8 @@ public class scr_Level : MonoBehaviour
         above_msh = new MeshFilter[TerrainWidth, TerrainHeight];
         ground_col = new BoxCollider[TerrainWidth, TerrainHeight];
         above_col = new BoxCollider[TerrainWidth, TerrainHeight];
+        ground_ren = new Renderer[TerrainWidth, TerrainHeight];
+        above_ren = new Renderer[TerrainWidth, TerrainHeight];
 
         for (int i = 0; i < TerrainHeight; i++)
         {
@@ -52,18 +60,48 @@ public class scr_Level : MonoBehaviour
                     ground_trs[j, i] = Instantiate(baseTile, new Vector3(j, -1, i), Quaternion.identity).transform;
                     ground_msh[j, i] = ground_trs[j, i].GetComponent<MeshFilter>();
                     ground_col[j, i] = ground_trs[j, i].GetComponent<BoxCollider>();
+                    ground_ren[j, i] = ground_trs[j, i].GetComponent<Renderer>();
                     ground_trs[j, i].parent = parentElement.transform;
-
+                }
+                if (above_trs[j, i] == null)
+                {
                     above_trs[j, i] = Instantiate(baseTile, new Vector3(j, 0, i), Quaternion.identity).transform;
                     above_msh[j, i] = above_trs[j, i].GetComponent<MeshFilter>();
                     above_col[j, i] = above_trs[j, i].GetComponent<BoxCollider>();
+                    above_ren[j, i] = above_trs[j, i].GetComponent<Renderer>();
                     above_trs[j, i].parent = parentElement.transform;
                 }
             }
         }
+
+
+        if (inputLayout != null)
+        {
+            SetMapToTextureLayout(inputLayout);
+        }
     }
 
+    internal void SetMapToTextureLayout(Texture2D inputTex)
+    {
+        Color32[] imgCol = inputTex.GetPixels32();
 
+
+        for (int i = 0; i < TerrainHeight; i++)
+        {
+            for (int j = 0; j < TerrainWidth; j++)
+            {
+                above_ren[j,i].material.color = imgCol[j + i * TerrainWidth];
+                ground_ren[j, i].material.color = new Color32(139, 69, 19,0);
+                if (imgCol[j + i * TerrainWidth].isSameAs(groundGreen))
+                {
+                    ground_ren[j, i].material.color = groundGreen;
+                    above_col[j, i].enabled = false;
+                    above_msh[j, i].mesh = null;
+                }
+            }
+        }
+
+    }
 
     void UpdateFullTerrain()
     {
@@ -107,7 +145,7 @@ public class scr_Level : MonoBehaviour
         Transform aboveBotLeft = null;
         Transform aboveBotMid = null;
         Transform aboveBotRight = null;
-        
+
         MeshFilter aboveTopLeft_mesh = null;
         MeshFilter aboveTopMid_mesh = null;
         MeshFilter aboveTopRight_mesh = null;
