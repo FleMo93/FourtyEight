@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4750697003820350}
   m_Layer: 0
-  m_Name: Crystal_Underground
+  m_Name: Dida_Underground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

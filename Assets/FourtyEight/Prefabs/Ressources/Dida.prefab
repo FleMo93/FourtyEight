@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4508993912799080}
   - component: {fileID: 65304977690235754}
   m_Layer: 0
-  m_Name: Crystal
+  m_Name: Dida
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
