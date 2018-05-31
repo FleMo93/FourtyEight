@@ -163,8 +163,11 @@ public class scr_Level : MonoBehaviour
                         ground[j, i] = 12;
                     }
                     ground_ren[j, i].material.color = Color_Grass;
-                    above_col[j, i].enabled = false;
-                    above_msh[j, i].mesh = null;
+
+                    Destroy(above_trs[j, i].gameObject);
+                    above_col[j, i] = null;
+                    above_ren[j, i] = null;
+                    above_msh[j, i] = null;
                 }
                 else if (imgCol[j + i * TerrainWidth].isSameAs(Color_Ore_Stone))
                 {
