@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TomekScriptTest : MonoBehaviour, I_IClickable {
+public class TomekScriptTest2 : MonoBehaviour, I_IClickable {
 
     public so_DataSet Data;
 

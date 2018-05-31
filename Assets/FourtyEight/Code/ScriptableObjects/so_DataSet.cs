@@ -9,11 +9,6 @@ public class so_DataSet : ScriptableObject {
     public string Name; // Name of this Object that should be displayed in the UI
     public string Desctription; // Information about this Object that should be displayed in the UI
     public Sprite MainIcon; // Icon of this Object that should be displayed in the UI
-    public bool IsClickable;
-
-
-
-
 
     public List<Attribute> Attributes;
 

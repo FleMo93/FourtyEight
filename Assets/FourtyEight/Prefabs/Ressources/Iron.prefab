@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4195511823081538}
   - component: {fileID: 33880430925848064}
   - component: {fileID: 23041389506633334}
-  - component: {fileID: 65198219675978944}
+  - component: {fileID: 65576778150992594}
   m_Layer: 0
   m_Name: Iron
   m_TagString: Untagged
@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1031009509610474}
   m_LocalRotation: {x: -0.000000059604645, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.13, y: 0, z: 0}
+  m_LocalPosition: {x: -7.98, y: 0, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -84,7 +84,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1031009509610474}
   m_Mesh: {fileID: 4300000, guid: 2f459df11086a71409ebbc14e9922635, type: 3}
---- !u!65 &65198219675978944
+--- !u!65 &65576778150992594
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -94,5 +94,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 1, z: 2}
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 1, z: 0}
