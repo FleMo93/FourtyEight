@@ -38,7 +38,6 @@ GameObject:
   - component: {fileID: 4977277537745816}
   - component: {fileID: 33363209613628796}
   - component: {fileID: 23818741028358062}
-  - component: {fileID: 95157512973366422}
   m_Layer: 0
   m_Name: Drill1
   m_TagString: Untagged
@@ -89,6 +88,7 @@ GameObject:
   - component: {fileID: 65278958132422366}
   - component: {fileID: 114185680339148714}
   - component: {fileID: 114602308445781970}
+  - component: {fileID: 95818205924364174}
   m_Layer: 0
   m_Name: Drill
   m_TagString: Untagged
@@ -449,13 +449,13 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!95 &95157512973366422
+--- !u!95 &95818205924364174
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1087539376575650}
+  m_GameObject: {fileID: 1488865757202994}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: ea3d65c62335a154f8172d64c632e2c0, type: 2}
@@ -480,7 +480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Stats: {fileID: 11400000, guid: ebe5dffc740958643b71abaa94774698, type: 2}
   _StatsGlobal: {fileID: 11400000, guid: a726aecab9f495f498050b72808932d0, type: 2}
-  resourceToTake: 0
+  resourceToTake: 1
 --- !u!114 &114602308445781970
 MonoBehaviour:
   m_ObjectHideFlags: 1
