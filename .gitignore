@@ -4,8 +4,6 @@
 /[Bb]uild/
 /[Bb]uilds/
 /Assets/AssetStoreTools*
-/Assets/Models/[Bb]lend/**/*.meta
-/Assets/Models/[Bb]lend/**/*.blend1
 
 # Visual Studio 2015 cache directory
 /.vs/
@@ -24,9 +22,6 @@ ExportedObj/
 *.booproj
 *.svd
 *.pdb
-*.blend1
-*.blend.meta
-*.blend1.meta
 
 # Unity3D generated meta files
 *.pidb.meta
