@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class scr_dbg_ControllerBall : MonoBehaviour
 {
+
+
     public Rigidbody myRigid;
     float powor = 10;
     // Use this for initialization
