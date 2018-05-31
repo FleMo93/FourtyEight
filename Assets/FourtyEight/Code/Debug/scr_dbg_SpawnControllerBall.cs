@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scr_StatsManager : MonoBehaviour {
+public class scr_dbg_SpawnControllerBall : MonoBehaviour {
 
-    public int Dmg;
-    public int Armor;
-    public int HPMAX;
-    public int HP;
-    
-
+    public Transform ball;
 
 	// Use this for initialization
 	void Start () {
-		
+        if (ball)
+        {
+            Instantiate(ball);
+        }
 	}
 	
 	// Update is called once per frame
