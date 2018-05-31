@@ -13,6 +13,8 @@ public class scr_Level : MonoBehaviour
     int TerrainHeight = 32;
     int TerrainWidth = 64;
 
+    int BorderHeight = 6;
+
     Color32 groundGreen = new Color32(98, 176, 70, 255);
     Color32 groundGray = new Color32();
     Color32 groundDarkGreen = new Color32();
@@ -57,7 +59,7 @@ public class scr_Level : MonoBehaviour
 
                 if (ground_trs[j, i] == null)
                 {
-                    ground_trs[j, i] = Instantiate(baseTile, new Vector3(j, -1, i), Quaternion.identity).transform;
+                    ground_trs[j, i] = Instantiate(baseTile, new Vector3(j - (TerrainWidth / 2), -1, i - (TerrainHeight / 2)), Quaternion.identity).transform;
                     ground_msh[j, i] = ground_trs[j, i].GetComponent<MeshFilter>();
                     ground_col[j, i] = ground_trs[j, i].GetComponent<BoxCollider>();
                     ground_ren[j, i] = ground_trs[j, i].GetComponent<Renderer>();
@@ -65,7 +67,7 @@ public class scr_Level : MonoBehaviour
                 }
                 if (above_trs[j, i] == null)
                 {
-                    above_trs[j, i] = Instantiate(baseTile, new Vector3(j, 0, i), Quaternion.identity).transform;
+                    above_trs[j, i] = Instantiate(baseTile, new Vector3(j - (TerrainWidth / 2), 0, i - (TerrainHeight / 2)), Quaternion.identity).transform;
                     above_msh[j, i] = above_trs[j, i].GetComponent<MeshFilter>();
                     above_col[j, i] = above_trs[j, i].GetComponent<BoxCollider>();
                     above_ren[j, i] = above_trs[j, i].GetComponent<Renderer>();
@@ -81,6 +83,33 @@ public class scr_Level : MonoBehaviour
         }
     }
 
+    internal void ConstructBorder()
+    {
+        Collider[] myCols = GetComponents<Collider>();
+        int count = myCols.Length;
+        for (int i = 0; i < count; i++)
+        {
+            Destroy(myCols[i]);
+        }
+        BoxCollider Border_left = gameObject.AddComponent<BoxCollider>();
+        BoxCollider Border_top = gameObject.AddComponent<BoxCollider>();
+        BoxCollider Border_right = gameObject.AddComponent<BoxCollider>();
+        BoxCollider Border_bottom = gameObject.AddComponent<BoxCollider>();
+
+        Border_left.center = new Vector3(-(TerrainWidth / 2 + 1), 0, 0);
+        Border_left.size = new Vector3(1, BorderHeight, TerrainHeight+2);
+
+        Border_top.center = new Vector3(0, 0, TerrainHeight / 2 + 1);
+        Border_top.size = new Vector3(TerrainWidth+2, BorderHeight, 1);
+
+        Border_right.center = new Vector3(TerrainWidth / 2 + 1, 0, 0);
+        Border_right.size = new Vector3(1, BorderHeight, TerrainHeight+2);
+
+        Border_bottom.center = new Vector3(0, 0, -(TerrainHeight / 2 + 1));
+        Border_bottom.size = new Vector3(TerrainWidth+2, BorderHeight, 1);
+
+    }
+
     internal void SetMapToTextureLayout(Texture2D inputTex)
     {
         Color32[] imgCol = inputTex.GetPixels32();
@@ -90,8 +119,8 @@ public class scr_Level : MonoBehaviour
         {
             for (int j = 0; j < TerrainWidth; j++)
             {
-                above_ren[j,i].material.color = imgCol[j + i * TerrainWidth];
-                ground_ren[j, i].material.color = new Color32(139, 69, 19,0);
+                above_ren[j, i].material.color = imgCol[j + i * TerrainWidth];
+                ground_ren[j, i].material.color = new Color32(139, 69, 19, 0);
                 if (imgCol[j + i * TerrainWidth].isSameAs(groundGreen))
                 {
                     ground_ren[j, i].material.color = groundGreen;
