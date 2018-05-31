@@ -17,9 +17,12 @@ public class Wall : MonoBehaviour, I_IClickable
         health = GetComponent<scr_DataSet>().Attributes.Find(x => x.Name == "Health");
     }
 
-    private void Update()
+    void Update()
     {
-        
+        if(health.Value <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     public so_DataSet GetSoDataSet()
