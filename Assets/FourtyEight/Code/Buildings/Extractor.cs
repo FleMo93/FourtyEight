@@ -17,6 +17,7 @@ public class Extractor : MonoBehaviour, I_IClickable
     private so_DataSet.Attribute ressourcePerSecond;
     private scr_DataSet.Attribute health;
     private so_DataSet.Attribute healthMax;
+    private so_DataSet.Attribute energyCost;
     private Animator animator;
 
     private float timeLeft = 0;
@@ -51,12 +52,15 @@ public class Extractor : MonoBehaviour, I_IClickable
         }
 
         ressourcePerSecond = _Stats.Attributes.Find(x => x.Name == ressource + " per second");
-        health = GetComponent<scr_DataSet>().Attributes.Find(x => x.Name == "Health");
         healthMax = _Stats.Attributes.Find(x => x.Name == "Maximum Health");
+        health = GetComponent<scr_DataSet>().Attributes.Find(x => x.Name == "Health");
+        energyCost = _Stats.Attributes.Find(x => x.Name == "Energy costs");
+
+        health.Value = healthMax.Value;
         timeLeft = 1;
 
         animator = GetComponent<Animator>();
-
+        _StatsGlobal.Energy -= (int)energyCost.Value;
         
     }
 
@@ -121,5 +125,10 @@ public class Extractor : MonoBehaviour, I_IClickable
     public scr_DataSet GetScrDataSet()
     {
         return GetComponent<scr_DataSet>();
+    }
+
+    private void OnDestroy()
+    {
+        _StatsGlobal.Energy += (int)energyCost.Value;
     }
 }

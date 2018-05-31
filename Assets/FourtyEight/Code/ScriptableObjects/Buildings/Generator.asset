@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf0ad81b16b16a64bae7018b4ea29d6f, type: 3}
+  m_Name: Generator
+  m_EditorClassIdentifier: 
+  Name: Generator
+  Desctription: Generates energy with coal
+  MainIcon: {fileID: 0}
+  Attributes:
+  - Name: Health
+    Icon: {fileID: 21300000, guid: c2b2fa45a080924438eb29c353296192, type: 3}
+    Value: 0
+    UiOrder: 1
+    TakeFromLocalDataSet: 1
+  - Name: Maximum Health
+    Icon: {fileID: 21300000, guid: c2b2fa45a080924438eb29c353296192, type: 3}
+    Value: 100
+    UiOrder: 999
+    TakeFromLocalDataSet: 0
+  - Name: Creates energy
+    Icon: {fileID: 21300000, guid: a833088f8979e9c4e80e0f24dae6316e, type: 3}
+    Value: 10
+    UiOrder: 2
+    TakeFromLocalDataSet: 0
+  - Name: Cost coal per second
+    Icon: {fileID: 21300000, guid: ce91154289e6c2b4aa7a7c6192f544de, type: 3}
+    Value: 1
+    UiOrder: 3
+    TakeFromLocalDataSet: 0

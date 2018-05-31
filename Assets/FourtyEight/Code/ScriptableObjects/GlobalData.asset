@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Stone: 0
   Coal: 0
-  Iron: 0
+  Iron: 29
   CrystalDida: 0
   CrystalGale: 0
-  Energy: 0
+  Energy: 2001
