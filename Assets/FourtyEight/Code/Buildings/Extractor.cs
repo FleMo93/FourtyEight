@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class Extractor : MonoBehaviour
 {
-    private enum Resources { Iron, Stone, Coal, Crystal_Dida, Crystal_Gale }
+    private enum Resources { None, Iron, Stone, Coal, Crystal_Dida, Crystal_Gale }
 
     [SerializeField]
     private so_DataSet _Stats;
     [SerializeField]
     private so_DataSetGlobal _StatsGlobal;
     [SerializeField]
-    private Resources resourceToTake = Resources.Coal;
+    private Resources resourceToTake = Resources.None;
 
     private so_DataSet.Attribute ressourcePerSecond;
-    private so_DataSet.Attribute health;
+    private scr_DataSet.Attribute health;
     private so_DataSet.Attribute healthMax;
-
+    private Animator animator;
 
     private float timeLeft = 0;
 
@@ -44,19 +44,42 @@ public class Extractor : MonoBehaviour
             case Resources.Stone:
                 ressource = "Stone";
                 break;
+
+            case Resources.None:
+                return;
         }
 
         ressourcePerSecond = _Stats.Attributes.Find(x => x.Name == ressource + " per second");
-        health = _Stats.Attributes.Find(x => x.Name == "Health");
+        health = GetComponent<scr_DataSet>().Attributes.Find(x => x.Name == "Health");
         healthMax = _Stats.Attributes.Find(x => x.Name == "Maximum Health");
         timeLeft = 1;
+
+        animator = GetComponent<Animator>();
+
+        
     }
-	
+
+    bool lastEnergyState = false;
 	void Update ()
     {
-        if(_StatsGlobal.Energy < 0 || health.Value <= 0)
+        if(health.Value <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+
+        if(resourceToTake == Resources.None)
         {
             return;
+        }
+
+        if(_StatsGlobal.Energy < 0 || lastEnergyState)
+        {
+            animator.Play("Idle");
+        }
+
+        if(_StatsGlobal.Energy > 0 || !lastEnergyState)
+        {
+            animator.Play("Drill");
         }
 
         timeLeft -= Time.deltaTime;
@@ -66,14 +89,14 @@ public class Extractor : MonoBehaviour
             switch(resourceToTake)
             {
                 case Resources.Coal:
-                    _StatsGlobal.Iron += (int)ressourcePerSecond.Value;
+                    _StatsGlobal.Coal += (int)ressourcePerSecond.Value;
                     break;
                 case Resources.Crystal_Dida:
-                    _StatsGlobal.CrystelDida += (int)ressourcePerSecond.Value;
+                    _StatsGlobal.CrystalDida += (int)ressourcePerSecond.Value;
                     break;
 
                 case Resources.Crystal_Gale:
-                    _StatsGlobal.CrystelGale += (int)ressourcePerSecond.Value;
+                    _StatsGlobal.CrystalGale += (int)ressourcePerSecond.Value;
                     break;
 
                 case Resources.Iron:
@@ -84,6 +107,8 @@ public class Extractor : MonoBehaviour
                     _StatsGlobal.Stone += (int)ressourcePerSecond.Value;
                     break;
             }
+
+            timeLeft = 1;
         }
     }
 }

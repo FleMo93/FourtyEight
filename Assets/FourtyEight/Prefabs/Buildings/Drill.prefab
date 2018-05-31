@@ -87,6 +87,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4525676278122752}
   - component: {fileID: 65278958132422366}
+  - component: {fileID: 114185680339148714}
+  - component: {fileID: 114602308445781970}
   m_Layer: 0
   m_Name: Drill
   m_TagString: Untagged
@@ -465,3 +467,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114185680339148714
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1488865757202994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2f49a02819d22f4eb6c639728b9426d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Stats: {fileID: 11400000, guid: ebe5dffc740958643b71abaa94774698, type: 2}
+  _StatsGlobal: {fileID: 11400000, guid: a726aecab9f495f498050b72808932d0, type: 2}
+  resourceToTake: 0
+--- !u!114 &114602308445781970
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1488865757202994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9f8b0f174f5adc40b2ec9bd8ffdfe8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Attributes:
+  - Name: Health
+    Value: 100
