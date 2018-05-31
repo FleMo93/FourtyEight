@@ -9,8 +9,8 @@ public class so_DataSetGlobal : ScriptableObject {
     public int Stone;
     public int Coal;
     public int Iron;
-    public int CrystelDida;
-    public int CrystelGale;
+    public int CrystalDida;
+    public int CrystalGale;
     public int Energy;
 
     public void ResetStats()
@@ -18,8 +18,8 @@ public class so_DataSetGlobal : ScriptableObject {
         Stone = 0;
         Coal = 0;
         Iron = 0;
-        CrystelDida = 0;
-        CrystelGale = 0;
+        CrystalDida = 0;
+        CrystalGale = 0;
         Energy = 0;
     }
 }
