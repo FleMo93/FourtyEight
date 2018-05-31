@@ -23,8 +23,8 @@ public class scr_UI_Resources : MonoBehaviour {
         Stone.text = DataGlobal.Stone.ToString();
         Coal.text = DataGlobal.Coal.ToString();
         Iron.text = DataGlobal.Iron.ToString();
-        CrystelDida.text = DataGlobal.CrystelDida.ToString();
-        CrystelGale.text = DataGlobal.CrystelGale.ToString();
+        CrystelDida.text = DataGlobal.CrystalDida.ToString();
+        CrystelGale.text = DataGlobal.CrystalGale.ToString();
         Energy.text = DataGlobal.Energy.ToString();
     }
 }
