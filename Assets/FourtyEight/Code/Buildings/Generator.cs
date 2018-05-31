@@ -19,7 +19,7 @@ public class Generator : MonoBehaviour
         health = GetComponent<scr_DataSet>().Attributes.Find(x => x.Name == "Health");
 
         health.Value = healthMax.Value;
-        timeLeft = 1;
+        timeLeft = 1; 
     }
 
     void Update()
