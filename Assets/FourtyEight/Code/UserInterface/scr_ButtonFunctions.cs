@@ -24,4 +24,12 @@ public class scr_ButtonFunctions : MonoBehaviour {
     {
         Application.Quit();
     }
+    public void BtnClick_DisableGameObject(GameObject _gameObject)
+    {
+        _gameObject.SetActive(false);
+    }
+    public void BtnClick_EnableGameObject(GameObject _gameObject)
+    {
+        _gameObject.SetActive(true);
+    }
 }
