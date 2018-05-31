@@ -6,20 +6,20 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "New DataSetGlobal", menuName = "ScriptabeObjects/DataSetGlobal")]
 public class so_DataSetGlobal : ScriptableObject {
 
-    public float Stone;
-    public float Coal;
-    public float Iron;
-    public float CrystelDida;
-    public float CrystelGale;
-    public float Energy;
+    public int Stone;
+    public int Coal;
+    public int Iron;
+    public int CrystelDida;
+    public int CrystelGale;
+    public int Energy;
 
     public void ResetStats()
     {
-        Stone = 0f;
-        Coal = 0f;
-        Iron = 0f;
-        CrystelDida = 0f;
-        CrystelGale = 0f;
-        Energy = 0f;
+        Stone = 0;
+        Coal = 0;
+        Iron = 0;
+        CrystelDida = 0;
+        CrystelGale = 0;
+        Energy = 0;
     }
 }

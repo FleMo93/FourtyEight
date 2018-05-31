@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class scr_Infobox : MonoBehaviour {
+public class scr_UI_Infobox : MonoBehaviour {
 
     public so_DataSet DataSet;
     public Image Icon;
     public Text Name;
     public Text Description;
-    public List<UiAttribute> Attributes;
+    public List<Attribute> Attributes;
 
 	// Use this for initialization
 	void Start () {
@@ -31,7 +31,6 @@ public class scr_Infobox : MonoBehaviour {
 
         }
 
-
     }
 	
 	// Update is called once per frame
@@ -40,7 +39,7 @@ public class scr_Infobox : MonoBehaviour {
 	}
 
     [System.Serializable]
-    public class UiAttribute
+    public class Attribute
     {
         public GameObject Object;
         public Image Icon;
