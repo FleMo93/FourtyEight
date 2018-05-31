@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Generator : MonoBehaviour
+public class Generator : MonoBehaviour, I_IClickable
 {
     [SerializeField]
     private so_DataSet _Stats;
@@ -28,7 +29,7 @@ public class Generator : MonoBehaviour
     {
         if(health.Value <= 0)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
 
         timeLeft -= Time.deltaTime;
@@ -64,5 +65,15 @@ public class Generator : MonoBehaviour
         {
             _StatsGlobal.Energy -= (int)createsEnergy.Value;
         }
+    }
+
+    public so_DataSet GetSoDataSet()
+    {
+        return _Stats;
+    }
+
+    public scr_DataSet GetScrDataSet()
+    {
+        return GetComponent<scr_DataSet>();
     }
 }
