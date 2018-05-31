@@ -9,25 +9,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf0ad81b16b16a64bae7018b4ea29d6f, type: 3}
-  m_Name: TomekDataSet2
+  m_Name: TomekDataSet3
   m_EditorClassIdentifier: 
-  Name: TestName
+  Name: Dataset 3
   Desctription: Testbeschreibung des Objektes
   MainIcon: {fileID: 21300000, guid: fd9af114d5f453844b57754b425c0ea3, type: 3}
   Attributes:
   - Name: Life
     Icon: {fileID: 21300000, guid: c2b2fa45a080924438eb29c353296192, type: 3}
-    Value: 238.9
+    Value: 400
     UiOrder: 1
     TakeFromLocalDataSet: 1
   - Name: Fuck
     Icon: {fileID: 21300000, guid: fd9af114d5f453844b57754b425c0ea3, type: 3}
-    Value: 123.67
+    Value: 400
     UiOrder: 0
     TakeFromLocalDataSet: 1
   - Name: test
     Icon: {fileID: 21300000, guid: a833088f8979e9c4e80e0f24dae6316e, type: 3}
-    Value: 250
+    Value: 400
     UiOrder: 999
     TakeFromLocalDataSet: 1
   - Name: test

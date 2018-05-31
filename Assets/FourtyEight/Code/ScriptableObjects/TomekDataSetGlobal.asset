@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a5c430b0dc1f8438438960f37b35db, type: 3}
   m_Name: TomekDataSetGlobal
   m_EditorClassIdentifier: 
-  Stone: 0
-  Coal: 0
-  Iron: 0
-  CrystelDida: 0
-  CrystelGale: 0
-  Energy: 0
+  Stone: 97
+  Coal: 141
+  Iron: 95
+  CrystalDida: 100
+  CrystalGale: 82
+  Energy: 104
