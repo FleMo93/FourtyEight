@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4038986276115574}
   - component: {fileID: 65923261599533450}
   m_Layer: 0
-  m_Name: Gale
+  m_Name: Crystal2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

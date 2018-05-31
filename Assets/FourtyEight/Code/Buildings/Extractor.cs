@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Extractor : MonoBehaviour
+public class Extractor : MonoBehaviour, I_IClickable
 {
     private enum Resources { None, Iron, Stone, Coal, Crystal_Dida, Crystal_Gale }
 
@@ -110,5 +111,15 @@ public class Extractor : MonoBehaviour
 
             timeLeft = 1;
         }
+    }
+
+    public so_DataSet GetSoDataSet()
+    {
+        return _Stats;
+    }
+
+    public scr_DataSet GetScrDataSet()
+    {
+        return GetComponent<scr_DataSet>();
     }
 }
