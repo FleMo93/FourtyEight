@@ -13,10 +13,14 @@ public class scr_UI_CamFollowTarget : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
         if (target != null)
         {
             transform.position = target.position + Offset;
+        }
+        else
+        {
+            target = GameObject.FindGameObjectWithTag(scr_Tags.Player).transform;
         }
 	}
 }

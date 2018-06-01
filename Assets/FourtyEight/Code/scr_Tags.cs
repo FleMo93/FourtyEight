@@ -4,5 +4,6 @@ using UnityEngine;
 
 public static class scr_Tags
 {
-    public const string Enemy = "Enemy";	
+    public const string Enemy = "Enemy";
+    public const string Player = "Player";
 }

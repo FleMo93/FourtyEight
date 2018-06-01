@@ -26,7 +26,7 @@ public class scr_PlayerMovement : MonoBehaviour
         bool input = false;
 
 
-        if (Input.GetAxis("Horizontal") > 0)
+        if (Input.GetAxis("Vertical") > 0)
         {
             input = true;
             if (Rigid)
@@ -35,7 +35,7 @@ public class scr_PlayerMovement : MonoBehaviour
                 transform.eulerAngles = new Vector3(0, Mathf.LerpAngle(transform.eulerAngles.y, 90, Time.deltaTime * rotarePower), 0);
             }
         }
-        else if (Input.GetAxis("Horizontal") < 0)
+        else if (Input.GetAxis("Vertical") < 0)
         {
             input = true;
             if (Rigid)
@@ -44,7 +44,7 @@ public class scr_PlayerMovement : MonoBehaviour
                 transform.eulerAngles = new Vector3(0, Mathf.LerpAngle(transform.eulerAngles.y, 270, Time.deltaTime * rotarePower), 0);
             }
         }
-        if (Input.GetAxis("Vertical") > 0)
+        if (Input.GetAxis("Horizontal") < 0)
         {
             input = true;
             if (Rigid)
@@ -53,7 +53,7 @@ public class scr_PlayerMovement : MonoBehaviour
                 transform.eulerAngles = new Vector3(0, Mathf.LerpAngle(transform.eulerAngles.y, 0, Time.deltaTime * rotarePower), 0);
             }
         }
-        else if (Input.GetAxis("Vertical") < 0)
+        else if (Input.GetAxis("Horizontal") > 0)
         {
             input = true;
             if (Rigid)

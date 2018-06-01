@@ -13,6 +13,10 @@ public class scr_KillAfterX : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+        if (lifeTime <= 0)
+        {
+            Destroy(gameObject);
+        }
         lifeTime -= Time.fixedDeltaTime;
 	}
 }
