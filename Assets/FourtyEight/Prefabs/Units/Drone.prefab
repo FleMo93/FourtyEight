@@ -87,10 +87,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4547891378629364}
-  - component: {fileID: 65359697038164710}
   - component: {fileID: 114648757470757840}
   - component: {fileID: 54835338053541226}
   - component: {fileID: 114581342036858740}
+  - component: {fileID: 136126630119767192}
   m_Layer: 0
   m_Name: Drone
   m_TagString: Enemy
@@ -220,7 +220,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1813470605613880}
   m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -16.35, y: 0.84, z: -2.461}
+  m_LocalPosition: {x: -20.25, y: 0.84, z: -2.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4228600663393406}
@@ -452,18 +452,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
---- !u!65 &65359697038164710
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1813470605613880}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0, y: 0.52, z: 0.7}
-  m_Center: {x: 0, y: -0.13, z: 0}
 --- !u!114 &114581342036858740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -490,3 +478,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Stats: {fileID: 11400000, guid: 6ac83afe4ba1b994d9625f7297913a84, type: 2}
+--- !u!136 &136126630119767192
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1813470605613880}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 1.54
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.03, z: 0}

@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class scr_Extractor : MonoBehaviour, I_IClickable, I_IDamagable
 {
-    private enum Resources { None, Iron, Stone, Coal, Crystal_Dida, Crystal_Gale }
+    public enum Resources { None, Iron, Stone, Coal, Crystal_Dida, Crystal_Gale }
 
     [SerializeField]
     private so_DataSet _Stats;
     [SerializeField]
     private so_DataSetGlobal _StatsGlobal;
     [SerializeField]
-    private Resources resourceToTake = Resources.None;
+    public Resources ResourceToTake = Resources.None;
 
     private so_DataSet.Attribute ressourcePerSecond;
     private scr_DataSet.Attribute health;
@@ -22,11 +22,11 @@ public class scr_Extractor : MonoBehaviour, I_IClickable, I_IDamagable
 
     private float timeLeft = 0;
 
-    void Start ()
+    void Awake ()
     {
         scr_Attributes.Attribute ressourcePerScondEnum = scr_Attributes.Attribute.Coal_per_second;
 
-        switch(resourceToTake)
+        switch(ResourceToTake)
         {
             case Resources.Coal:
                 ressourcePerScondEnum = scr_Attributes.Attribute.Coal_per_second;
@@ -72,7 +72,7 @@ public class scr_Extractor : MonoBehaviour, I_IClickable, I_IDamagable
             Destroy(this.gameObject);
         }
 
-        if(resourceToTake == Resources.None)
+        if(ResourceToTake == Resources.None)
         {
             return;
         }
@@ -91,7 +91,7 @@ public class scr_Extractor : MonoBehaviour, I_IClickable, I_IDamagable
 
         if(timeLeft <= 0)
         {
-            switch(resourceToTake)
+            switch(ResourceToTake)
             {
                 case Resources.Coal:
                     _StatsGlobal.Coal += (int)ressourcePerSecond.Value;
