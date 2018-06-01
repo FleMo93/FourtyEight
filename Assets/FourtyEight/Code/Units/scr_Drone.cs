@@ -23,7 +23,7 @@ public class scr_Drone : MonoBehaviour, I_IDamagable, I_IClickable
     private GameObject actualTargetToAttack;
     private GameObject player;
     private Rigidbody myRigidbody;
-    private List<GameObject> damagables;
+    //private List<GameObject> damagables;
 
     private enum States { None, Attack, Move }
     private States state = States.Move;
@@ -42,13 +42,8 @@ public class scr_Drone : MonoBehaviour, I_IDamagable, I_IClickable
 
         health.Value = healthMax.Value;
 
-        SphereCollider collider = gameObject.AddComponent<SphereCollider>();
-        collider.isTrigger = true;
-        collider.radius = visibilityRange.Value;
-
         player = GameObject.FindGameObjectWithTag(scr_Tags.Player);
         path = new List<Vector3>();
-        damagables = new List<GameObject>();
 
         myRigidbody = GetComponent<Rigidbody>();
 
@@ -198,13 +193,8 @@ public class scr_Drone : MonoBehaviour, I_IDamagable, I_IClickable
         float lastRange = float.MaxValue;
         GameObject lastGo = null;
 
-        foreach(GameObject go in damagables)
+        foreach(GameObject go in GetDamagables())
         {
-            if(go == null)
-            {
-                damagables.Remove(go);
-            }
-
             if(go == player)
             {
                 return go;
@@ -220,6 +210,24 @@ public class scr_Drone : MonoBehaviour, I_IDamagable, I_IClickable
         }
 
         return lastGo;
+    }
+
+    GameObject[] GetDamagables()
+    {
+        List<GameObject> list = new List<GameObject>();
+        RaycastHit[] hits = Physics.SphereCastAll(this.transform.position, attackRange.Value, Vector3.up);
+
+        foreach(RaycastHit hit in hits)
+        {
+            I_IDamagable damagable = hit.collider.gameObject.GetComponent<I_IDamagable>();
+
+            if(damagable != null)
+            {
+                list.Add(hit.collider.gameObject);
+            }
+        }
+
+        return list.ToArray();
     }
 
     float timeToAttack = 0;
@@ -257,25 +265,5 @@ public class scr_Drone : MonoBehaviour, I_IDamagable, I_IClickable
     public scr_DataSet GetScrDataSet()
     {
         return scrStats;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        I_IDamagable dmg = other.GetComponent<I_IDamagable>();
-
-        if(dmg != null && !damagables.Contains(other.gameObject))
-        {
-            damagables.Add(other.gameObject);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        I_IDamagable dmg = other.GetComponent<I_IDamagable>();
-
-        if (dmg != null)
-        {
-            damagables.Remove(other.gameObject);
-        }
     }
 }

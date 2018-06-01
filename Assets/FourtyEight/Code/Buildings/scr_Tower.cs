@@ -28,8 +28,6 @@ public class scr_Tower : MonoBehaviour, I_IClickable, I_IDamagable
     private so_DataSet.Attribute range;
     private so_DataSet.Attribute fireRate;
     private so_DataSet.Attribute rotationSpeed;
-    private SphereCollider rangeSphereCollider;
-    private List<GameObject> enemysInRange;
     private Quaternion headDefault;
     private Quaternion cannonDefault;
     private GameObject cannonRotateTowards;
@@ -48,13 +46,6 @@ public class scr_Tower : MonoBehaviour, I_IClickable, I_IDamagable
 
         health.Value = healthMax.Value;
         timeLeftToFire += fireRate.Value;
-
-        rangeSphereCollider = gameObject.AddComponent<SphereCollider>();
-        rangeSphereCollider.isTrigger = true;
-        rangeSphereCollider.radius = range.Value / 2;
-
-        enemysInRange = new List<GameObject>();
-
         _StatsGlobal.Energy-= (int)energyCost.Value;
 
         headDefault = _Head.transform.rotation.Copy();
@@ -140,26 +131,31 @@ public class scr_Tower : MonoBehaviour, I_IClickable, I_IDamagable
     {
         List<GameObject> enemiesToRemove = new List<GameObject>();
 
-        foreach(GameObject enemy in enemysInRange)
+        foreach(GameObject enemy in EnemiesInRange())
         {
-            if(enemy == null)
-            {
-                enemiesToRemove.Add(enemy);
-                continue;
-            }
-
             if(Vector3.Distance(this.transform.position, enemy.transform.position) > minimumRange.Value)
             {
                 return enemy;
             }
         }
 
-        foreach(GameObject enemy in enemiesToRemove)
-        {
-            enemysInRange.Remove(enemy);
-        }
-
         return null;
+    }
+
+    private GameObject[] EnemiesInRange()
+    {
+        RaycastHit[] hits = Physics.SphereCastAll(this.transform.position, range.Value, Vector3.up);
+
+        List<GameObject> enemies = new List<GameObject>();
+
+        foreach(RaycastHit hit in hits)
+        {
+            if(hit.collider.gameObject.tag == scr_Tags.Enemy)
+            {
+                enemies.Add(hit.collider.gameObject);
+            }
+        }
+        return enemies.ToArray();
     }
 
     private void RotateHeadTowards(Vector3 target)
@@ -219,21 +215,21 @@ public class scr_Tower : MonoBehaviour, I_IClickable, I_IDamagable
         return false;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag == scr_Tags.Enemy && !enemysInRange.Contains(other.gameObject))
-        {
-            enemysInRange.Add(other.gameObject);
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if(other.gameObject.tag == scr_Tags.Enemy && !enemysInRange.Contains(other.gameObject))
+    //    {
+    //        enemysInRange.Add(other.gameObject);
+    //    }
+    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-        if(other.gameObject.tag == scr_Tags.Enemy && enemysInRange.Contains(other.gameObject))
-        {
-            enemysInRange.Remove(other.gameObject);
-        }
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if(other.gameObject.tag == scr_Tags.Enemy && enemysInRange.Contains(other.gameObject))
+    //    {
+    //        enemysInRange.Remove(other.gameObject);
+    //    }
+    //}
 
     private void OnDestroy()
     {
