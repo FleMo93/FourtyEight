@@ -25,3 +25,8 @@ MonoBehaviour:
     Value: 100
     UiOrder: 999
     TakeFromLocalDataSet: 0
+  - Name: 2
+    Icon: {fileID: 0}
+    Value: 3
+    UiOrder: 999
+    TakeFromLocalDataSet: 0

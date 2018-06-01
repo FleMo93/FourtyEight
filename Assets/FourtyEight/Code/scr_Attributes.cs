@@ -31,7 +31,8 @@ public static class scr_Attributes
         Cost_Iron,
         Cost_Coal,
         Cost_Gale,
-        Cost_Dida
+        Cost_Dida,
+        Visibility_Range
 
     }
 }
