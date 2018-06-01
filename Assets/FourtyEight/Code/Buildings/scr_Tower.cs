@@ -16,8 +16,8 @@ public class scr_Tower : MonoBehaviour
     private so_DataSet.Attribute minimumRange;
     private so_DataSet.Attribute damage;
     private so_DataSet.Attribute range;
-    private SphereCollider minRangeSphereCollider;
     private SphereCollider rangeSphereCollider;
+    private List<GameObject> enemysInRange;
 
     void Start ()
     {
@@ -30,17 +30,33 @@ public class scr_Tower : MonoBehaviour
 
         health.Value = healthMax.Value;
 
-        minRangeSphereCollider = gameObject.AddComponent<SphereCollider>();
-        minRangeSphereCollider.isTrigger = true;
-        minRangeSphereCollider.radius = minimumRange.Value / 2;
-
         rangeSphereCollider = gameObject.AddComponent<SphereCollider>();
         rangeSphereCollider.isTrigger = true;
         rangeSphereCollider.radius = range.Value / 2;
+
+        enemysInRange = new List<GameObject>();
     }
 
     void Update()
     {
+        
+    }
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(!enemysInRange.Contains(other.gameObject))
+        {
+            enemysInRange.Add(other.gameObject);
+        }
+    }
+
+
+    private void OnTriggerExit(Collider other)
+    {
+        if(enemysInRange.Contains(other.gameObject))
+        {
+            enemysInRange.Remove(other.gameObject);
+        }
     }
 }
