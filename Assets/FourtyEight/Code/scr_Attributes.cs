@@ -19,13 +19,19 @@ public static class scr_Attributes
         Gale,
         Gale_per_second,
         Regeneration_per_second,
-        Energy_costs,
+        Cost_Energy,
         Creates_energy,
         Cost_coal_per_second,
         Fire_rate,
         Range,
         Minimum_range,
         Rotation_speed,
-        Damage
+        Damage,
+        Cost_Stone,
+        Cost_Iron,
+        Cost_Coal,
+        Cost_Gale,
+        Cost_Dida
+
     }
 }

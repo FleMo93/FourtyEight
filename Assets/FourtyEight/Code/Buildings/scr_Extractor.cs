@@ -54,7 +54,7 @@ public class scr_Extractor : MonoBehaviour, I_IClickable
         ressourcePerSecond = _Stats.Attributes.Find(x => x.Name == ressourcePerScondEnum);
         healthMax = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Maximum_Health);
         health = GetComponent<scr_DataSet>().Attributes.Find(x => x.Name == scr_Attributes.Attribute.Health);
-        energyCost = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Energy_costs);
+        energyCost = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Cost_Energy);
 
         health.Value = healthMax.Value;
         timeLeft = 1;

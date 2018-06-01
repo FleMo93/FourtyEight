@@ -8,12 +8,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4a5c430b0dc1f8438438960f37b35db, type: 3}
-  m_Name: TomekDataSetGlobal
+  m_Script: {fileID: 11500000, guid: cf0ad81b16b16a64bae7018b4ea29d6f, type: 3}
+  m_Name: New DataSet
   m_EditorClassIdentifier: 
-  Stone: 0
-  Coal: 0
-  Iron: 0
-  CrystelDida: 0
-  CrystelGale: 0
-  Energy: 0
+  Name: 
+  Desctription: 
+  MainIcon: {fileID: 0}
+  Attributes: []
