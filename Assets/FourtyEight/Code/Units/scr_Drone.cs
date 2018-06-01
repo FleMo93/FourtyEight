@@ -60,6 +60,8 @@ public class scr_Drone : MonoBehaviour, I_IDamagable, I_IClickable
 
         if(health.Value <= 0)
         {
+            GameObject go = Instantiate(_SpawnOnDeath);
+            go.transform.position = this.transform.position;
             Destroy(this.gameObject);
             return;
         }
@@ -266,11 +268,5 @@ public class scr_Drone : MonoBehaviour, I_IDamagable, I_IClickable
     public scr_DataSet GetScrDataSet()
     {
         return scrStats;
-    }
-
-    private void OnDestroy()
-    {
-        GameObject go = Instantiate(_SpawnOnDeath);
-        go.transform.position = this.transform.position;
     }
 }

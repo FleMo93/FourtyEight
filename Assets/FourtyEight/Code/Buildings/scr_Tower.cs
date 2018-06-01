@@ -31,7 +31,6 @@ public class scr_Tower : MonoBehaviour, I_IClickable, I_IDamagable
     private so_DataSet.Attribute fireRate;
     private so_DataSet.Attribute rotationSpeed;
     private Quaternion headDefault;
-    private Quaternion cannonDefault;
     private GameObject cannonRotateTowards;
 
     float timeLeftToFire;
@@ -51,8 +50,8 @@ public class scr_Tower : MonoBehaviour, I_IClickable, I_IDamagable
         _StatsGlobal.Energy-= (int)energyCost.Value;
 
         headDefault = _Head.transform.rotation.Copy();
-        cannonDefault = _Cannon.transform.rotation.Copy();
         cannonRotateTowards = new GameObject("_CannonRotateTowards");
+        cannonRotateTowards.transform.rotation = this.transform.rotation;
         cannonRotateTowards.transform.SetParent(_Head.transform);
     }
 
@@ -174,7 +173,6 @@ public class scr_Tower : MonoBehaviour, I_IClickable, I_IDamagable
 
     private void RotateCannoneTowards(Vector3 target)
     {
-        
         Vector3 ankTarget = target;
         ankTarget.y = _Cannon.transform.position.y;
         float ank = Vector3.Distance(_Cannon.transform.position, ankTarget);

@@ -13,6 +13,19 @@ public class scr_Extractor : MonoBehaviour, I_IClickable, I_IDamagable, I_IExtra
     private so_DataSetGlobal _StatsGlobal;
     [SerializeField]
     private scr_Attributes.Attribute resourceToTake = scr_Attributes.Attribute.Coal;
+    [Header("Particle Materials")]
+    [SerializeField]
+    private ParticleSystem _MaterialParticleSystem;
+    [SerializeField]
+    private Material _IronMaterial;
+    [SerializeField]
+    private Material _StoneMaterial;
+    [SerializeField]
+    private Material _ColeMaterial;
+    [SerializeField]
+    private Material _DidaMaterial;
+    [SerializeField]
+    private Material _GaleMaterial;
 
 
     private so_DataSet.Attribute ressourcePerSecond;
@@ -26,26 +39,32 @@ public class scr_Extractor : MonoBehaviour, I_IClickable, I_IDamagable, I_IExtra
     void Awake ()
     {
         scr_Attributes.Attribute ressourcePerScondEnum = scr_Attributes.Attribute.Coal_per_second;
+        Renderer materialRenderer = _MaterialParticleSystem.GetComponent<Renderer>();
 
-        switch(resourceToTake)
+        switch (resourceToTake)
         {
             case scr_Attributes.Attribute.Coal:
                 ressourcePerScondEnum = scr_Attributes.Attribute.Coal_per_second;
+                materialRenderer.material = _ColeMaterial;
                 break;
             case scr_Attributes.Attribute.Dida:
                 ressourcePerScondEnum = scr_Attributes.Attribute.Dida_per_second;
+                materialRenderer.material = _DidaMaterial;
                 break;
 
             case scr_Attributes.Attribute.Gale:
                 ressourcePerScondEnum = scr_Attributes.Attribute.Gale_per_second;
+                materialRenderer.material = _GaleMaterial;
                 break;
 
             case scr_Attributes.Attribute.Iron:
                 ressourcePerScondEnum = scr_Attributes.Attribute.Iron_per_second;
+                materialRenderer.material = _IronMaterial;
                 break;
 
             case scr_Attributes.Attribute.Stone:
                 ressourcePerScondEnum = scr_Attributes.Attribute.Stone_per_second;
+                materialRenderer.material = _StoneMaterial;
                 break;
         }
 
