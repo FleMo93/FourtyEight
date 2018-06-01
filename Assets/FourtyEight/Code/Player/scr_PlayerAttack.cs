@@ -56,6 +56,12 @@ public class scr_PlayerAttack : MonoBehaviour
             bool damageDeal = false;
             if (objectHit)
             {
+                scr_DecoOnDamage decoScript = objectHit.GetComponent<scr_DecoOnDamage>();
+                if (decoScript)
+                {
+                    decoScript.MarkDamaged();
+                }
+
                 I_IDamagable targetDamagable = objectHit.GetComponent<I_IDamagable>();
                 if (targetDamagable != null)
                 {

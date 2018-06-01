@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 114650098100912816}
   - component: {fileID: 114047205979253758}
   - component: {fileID: 208762268634891746}
+  - component: {fileID: 114050239395952640}
   m_Layer: 0
   m_Name: MountainStoneBlock
   m_TagString: Untagged
@@ -113,6 +114,18 @@ MonoBehaviour:
   Attributes:
   - Name: 0
     Value: 15
+--- !u!114 &114050239395952640
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1118333821940802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f11f99b6080ab3345bd978579f0fc200, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decoObject: {fileID: 1170815368996716, guid: 28c5dbf897cb3f54eab7c0e7c4b1e054, type: 2}
 --- !u!114 &114650098100912816
 MonoBehaviour:
   m_ObjectHideFlags: 1
