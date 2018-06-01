@@ -58,6 +58,11 @@ public class scr_UI_BuildingButton : MonoBehaviour, IPointerDownHandler {
                 {
                     previewObject.transform.position = hit.collider.transform.Find("BuildPos").position;
                 }
+
+                if (Type == scr_Attributes.Attribute.Tower && hit.collider.GetComponent<I_IBuildableGenerator>() != null)
+                {
+                    previewObject.transform.position = hit.collider.transform.Find("BuildPos").position;
+                }
             }
 
             buildPosOK = previewObject.GetComponent<scr_UI_BuildingPreObjects>().Buildable;

@@ -1,4 +1,4 @@
 ﻿
-public interface I_IBuildableGenerator{
+public interface I_IBuildableGenerator {
 
 }
