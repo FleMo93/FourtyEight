@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scr_Extractor : MonoBehaviour, I_IClickable
+public class scr_Extractor : MonoBehaviour, I_IClickable, I_IDamagable
 {
     private enum Resources { None, Iron, Stone, Coal, Crystal_Dida, Crystal_Gale }
 

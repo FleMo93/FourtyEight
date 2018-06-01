@@ -32,16 +32,26 @@ MonoBehaviour:
     TakeFromLocalDataSet: 0
   - Name: 19
     Icon: {fileID: 0}
-    Value: 12
+    Value: 4
     UiOrder: 3
     TakeFromLocalDataSet: 0
   - Name: 18
     Icon: {fileID: 0}
-    Value: 4
+    Value: 12
     UiOrder: 999
     TakeFromLocalDataSet: 0
   - Name: 21
     Icon: {fileID: 0}
     Value: 2
+    UiOrder: 999
+    TakeFromLocalDataSet: 0
+  - Name: 17
+    Icon: {fileID: 0}
+    Value: 1
+    UiOrder: 999
+    TakeFromLocalDataSet: 0
+  - Name: 20
+    Icon: {fileID: 0}
+    Value: 1
     UiOrder: 999
     TakeFromLocalDataSet: 0

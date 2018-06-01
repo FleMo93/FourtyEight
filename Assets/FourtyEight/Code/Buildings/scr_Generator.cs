@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scr_Generator : MonoBehaviour, I_IClickable
+public class scr_Generator : MonoBehaviour, I_IClickable, I_IDamagable
 {
     [SerializeField]
     private so_DataSet _Stats;

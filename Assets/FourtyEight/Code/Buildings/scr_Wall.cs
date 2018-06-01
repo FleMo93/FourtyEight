@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scr_Wall : MonoBehaviour, I_IClickable
+public class scr_Wall : MonoBehaviour, I_IClickable, I_IDamagable
 {
 
     [SerializeField]
