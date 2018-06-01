@@ -78,7 +78,7 @@ public class scr_Drone : MonoBehaviour, I_IDamagable, I_IClickable
 
 
         if (path.Count == 0 || 
-            (Vector3.Distance(this.transform.position, player.transform.position) <= attackRange.Value) && hit.collider.gameObject == player)
+           ( (Vector3.Distance(this.transform.position, player.transform.position) <= attackRange.Value) && hit.collider.gameObject == player))
         {
             state = States.Attack;
         }
