@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 65268385681255456}
   - component: {fileID: 114386548061707102}
   - component: {fileID: 114859653212458722}
+  - component: {fileID: 208690054358418660}
   m_Layer: 0
   m_Name: Generator
   m_TagString: Untagged
@@ -1015,7 +1016,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Attributes:
-  - Name: Health
+  - Name: 0
     Value: 100
 --- !u!114 &114859653212458722
 MonoBehaviour:
@@ -1030,3 +1031,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Stats: {fileID: 11400000, guid: bbf3c6dce1b48a24db963a710dcb7b5b, type: 2}
   _StatsGlobal: {fileID: 11400000, guid: a726aecab9f495f498050b72808932d0, type: 2}
+--- !u!208 &208690054358418660
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1097172228856588}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1, y: 1, z: 1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1, z: 0}
+  m_TimeToStationary: 0.5

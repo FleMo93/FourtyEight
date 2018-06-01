@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 114185680339148714}
   - component: {fileID: 114602308445781970}
   - component: {fileID: 95818205924364174}
+  - component: {fileID: 208392205972748438}
   m_Layer: 0
   m_Name: Drill
   m_TagString: Untagged
@@ -493,5 +494,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Attributes:
-  - Name: Health
+  - Name: 0
     Value: 100
+--- !u!208 &208392205972748438
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1488865757202994}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1, y: 1, z: 1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1, z: 0}
+  m_TimeToStationary: 0.5
