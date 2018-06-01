@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class scr_Tower : MonoBehaviour, I_IClickable, I_IDamagable
@@ -14,6 +15,10 @@ public class scr_Tower : MonoBehaviour, I_IClickable, I_IDamagable
     private GameObject _Head;
     [SerializeField]
     private GameObject _Cannon;
+    [SerializeField]
+    private GameObject _FirePosition;
+    [SerializeField]
+    private GameObject _LaserPrefab;
 
     private scr_DataSet.Attribute health;
     private so_DataSet.Attribute healthMax;
@@ -27,6 +32,7 @@ public class scr_Tower : MonoBehaviour, I_IClickable, I_IDamagable
     private List<GameObject> enemysInRange;
     private Quaternion headDefault;
     private Quaternion cannonDefault;
+    private GameObject cannonRotateTowards;
 
     float timeLeftToFire;
     void Start ()
@@ -53,6 +59,8 @@ public class scr_Tower : MonoBehaviour, I_IClickable, I_IDamagable
 
         headDefault = _Head.transform.rotation.Copy();
         cannonDefault = _Cannon.transform.rotation.Copy();
+        cannonRotateTowards = new GameObject("_CannonRotateTowards");
+        cannonRotateTowards.transform.SetParent(_Head.transform);
     }
 
     void Update()
@@ -73,47 +81,142 @@ public class scr_Tower : MonoBehaviour, I_IClickable, I_IDamagable
             timeLeftToFire -= Time.deltaTime;
         }
 
-        if(timeLeftToFire <= 0)
-        {
-            GameObject enemy = GetEnemy();
+        GameObject enemy = GetEnemy();
 
-            if(enemy != null)
+        if(enemy != null)
+        {
+            RotateHeadTowards(enemy.transform.position);
+            RotateCannoneTowards(enemy.transform.position);
+
+            if (timeLeftToFire <= 0 && IsLookingAtEnemy(enemy))
             {
-                RotateTowards(enemy.transform.position);
+                I_IDamagable damagable = enemy.GetComponent<I_IDamagable>();
+
+                if(damagable == null)
+                {
+                    throw new Exception("GameObject with tag " + scr_Tags.Enemy + " need I_IDamagable script!");
+                }
+
+                so_DataSet.Attribute soHealth = damagable.GetSoDataSet().Attributes.Where(x => x.Name == scr_Attributes.Attribute.Health).FirstOrDefault();
+
+                if(soHealth == null)
+                {
+                    throw new Exception("I_IDamagable needs health attribute!");
+                }
+
+                if (soHealth.TakeFromLocalDataSet)
+                {
+                    scr_DataSet.Attribute scrHealth = damagable.GetScrDataSet().Attributes.Where(x => x.Name == scr_Attributes.Attribute.Health).FirstOrDefault();
+                    
+                    if(scrHealth == null)
+                    {
+                        throw new Exception("I_IDamagable needs health attribute!");
+                    }
+
+                    scrHealth.Value -= damage.Value;
+                }
+                else
+                {
+                    soHealth.Value -= damage.Value;
+                }
+
+                GameObject go = Instantiate(_LaserPrefab);
+                go.transform.position = _FirePosition.transform.position;
+                go.transform.LookAt(enemy.transform.position);
+
+                float distance = Vector3.Distance(_FirePosition.transform.position, enemy.transform.position);
+                go.GetComponent<I_ILaser>().SetLength(distance);
+
+                timeLeftToFire = fireRate.Value;
             }
-            else
-            {
-                RotateToDefault();
-            }
+        }
+        else
+        {
+            RotateToDefault();
         }
     }
 
     private GameObject GetEnemy()
     {
-        if(enemysInRange.Count > 0)
+        List<GameObject> enemiesToRemove = new List<GameObject>();
+
+        foreach(GameObject enemy in enemysInRange)
         {
-            return enemysInRange[0];
+            if(enemy == null)
+            {
+                enemiesToRemove.Add(enemy);
+                continue;
+            }
+
+            if(Vector3.Distance(this.transform.position, enemy.transform.position) > minimumRange.Value)
+            {
+                return enemy;
+            }
         }
-        else
+
+        foreach(GameObject enemy in enemiesToRemove)
         {
-            return null;
+            enemysInRange.Remove(enemy);
         }
+
+        return null;
     }
 
-    private void RotateTowards(Vector3 target)
+    private void RotateHeadTowards(Vector3 target)
     {
         Quaternion actualRotation = _Head.transform.rotation.Copy();
         _Head.transform.LookAt(target);
-        _Head.transform.rotation = Quaternion.Euler(0, _Head.transform.rotation.eulerAngles.y + 180, 0);
+        _Head.transform.rotation = Quaternion.Euler(0, _Head.transform.rotation.eulerAngles.y, 0);
         Quaternion targetRotation = _Head.transform.rotation.Copy();
         _Head.transform.rotation = actualRotation;
         _Head.transform.rotation = Quaternion.RotateTowards(actualRotation, targetRotation, rotationSpeed.Value);
     }
 
+    private void RotateCannoneTowards(Vector3 target)
+    {
+        
+        Vector3 ankTarget = target;
+        ankTarget.y = _Cannon.transform.position.y;
+        float ank = Vector3.Distance(_Cannon.transform.position, ankTarget);
+        float gegKa = target.y - _Cannon.transform.position.y;
+
+        cannonRotateTowards.transform.position = _Cannon.transform.position;
+        cannonRotateTowards.transform.Translate(new Vector3(0, gegKa, ank));
+
+        Quaternion actualRotation = _Cannon.transform.rotation.Copy();
+        _Cannon.transform.LookAt(cannonRotateTowards.transform);
+        Quaternion targetRotation = _Cannon.transform.rotation.Copy();
+        _Cannon.transform.rotation = actualRotation;
+        _Cannon.transform.rotation = Quaternion.RotateTowards(actualRotation, targetRotation, 1f);
+    }
+
     private void RotateToDefault()
     {
         _Head.transform.rotation = Quaternion.RotateTowards(_Head.transform.rotation, headDefault, rotationSpeed.Value);
-        _Cannon.transform.rotation = Quaternion.RotateTowards(_Cannon.transform.rotation, cannonDefault, rotationSpeed.Value);
+        Vector3 v3 = _Cannon.transform.position;
+        v3 += _Cannon.transform.forward;
+        v3.y = _Cannon.transform.position.y;
+        RotateCannoneTowards(v3);
+    }
+
+    private bool IsLookingAtEnemy(GameObject enemy)
+    {
+        Collider[] colliders = enemy.GetComponents<Collider>();
+
+        Ray ray = new Ray(_FirePosition.transform.position, _FirePosition.transform.forward);
+        RaycastHit hit;
+
+        if(!Physics.Raycast(ray, out hit, range.Value))
+        {
+            return false;
+        }
+
+        if(colliders.Contains(hit.collider))
+        {
+            return true;
+        }
+
+        return false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -123,7 +226,6 @@ public class scr_Tower : MonoBehaviour, I_IClickable, I_IDamagable
             enemysInRange.Add(other.gameObject);
         }
     }
-
 
     private void OnTriggerExit(Collider other)
     {
