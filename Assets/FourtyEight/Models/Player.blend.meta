@@ -1,0 +1,176 @@
+fileFormatVersion: 2
+guid: b6fd6676a8c9af746a132624c72c7b3a
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Cube
+    100002: Cylinder
+    100004: Cylinder_001
+    100006: //RootNode
+    100008: Body
+    100010: Rotor_Left
+    100012: Rotor_Right
+    100014: RotorFrame
+    100016: Window
+    100018: Icosphere
+    100020: Icosphere_001
+    100022: Sphere
+    100024: Chasis
+    100026: Spawn_Bullet
+    100028: Thruster_left
+    100030: Thruster_right
+    100032: Weapon
+    400000: Cube
+    400002: Cylinder
+    400004: Cylinder_001
+    400006: //RootNode
+    400008: Body
+    400010: Rotor_Left
+    400012: Rotor_Right
+    400014: RotorFrame
+    400016: Window
+    400018: Icosphere
+    400020: Icosphere_001
+    400022: Sphere
+    400024: Chasis
+    400026: Spawn_Bullet
+    400028: Thruster_left
+    400030: Thruster_right
+    400032: Weapon
+    2100000: unnamed
+    2100002: Mat_Player_c_additions
+    2100004: Mat_Player_c_detail
+    2100006: Mat_Player_color
+    2100008: Mat_Player_Glass
+    2300000: Cube
+    2300002: Cylinder
+    2300004: Cylinder_001
+    2300006: Body
+    2300008: Rotor_Left
+    2300010: Rotor_Right
+    2300012: RotorFrame
+    2300014: Window
+    2300016: Icosphere
+    2300018: Icosphere_001
+    2300020: Sphere
+    2300022: Chasis
+    2300024: Spawn_Bullet
+    2300026: Thruster_left
+    2300028: Thruster_right
+    2300030: Weapon
+    3300000: Cube
+    3300002: Cylinder
+    3300004: Cylinder_001
+    3300006: Body
+    3300008: Rotor_Left
+    3300010: Rotor_Right
+    3300012: RotorFrame
+    3300014: Window
+    3300016: Icosphere
+    3300018: Icosphere_001
+    3300020: Sphere
+    3300022: Chasis
+    3300024: Spawn_Bullet
+    3300026: Thruster_left
+    3300028: Thruster_right
+    3300030: Weapon
+    4300000: Cube
+    4300002: Cylinder_001
+    4300004: Cylinder
+    4300006: Rotor_Left
+    4300008: Window
+    4300010: Body
+    4300012: Rotor_Right
+    4300014: RotorFrame
+    4300016: Icosphere_001
+    4300018: Icosphere
+    4300020: Sphere
+    4300022: Spawn_Bullet
+    4300024: Thruster_left
+    4300026: Thruster_right
+    4300028: Weapon
+    4300030: Chasis
+    7400000: Default Take
+    9500000: //RootNode
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

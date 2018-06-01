@@ -13,8 +13,8 @@ public class scr_Level_proc : MonoBehaviour
 
     Color32 Color_Grass = new Color32(98, 176, 70, 255);
     Color32 Color_Dirt = new Color32(233, 191, 128, 255);
-    Color32 Color_DarkGreen = new Color32(0, 117, 62, 255);
-    Color32 Color_Black = new Color32(0, 0, 0, 255);
+    //Color32 Color_DarkGreen = new Color32(0, 117, 62, 255);
+    //Color32 Color_Black = new Color32(0, 0, 0, 255);
 
     Color32 Color_Ore_Stone = new Color32(73, 73, 73, 255);
     Color32 Color_Ore_Coal = new Color32(39, 39, 39, 255);
@@ -328,49 +328,49 @@ public class scr_Level_proc : MonoBehaviour
     void UpdateMesh(int x, int y, bool isAbove = true)
     {
         byte[,] targetPlattfomr = isAbove ? above : ground;
-        Transform[,] targetPlattfomr_trs = isAbove ? above_trs : ground_trs;
+        //Transform[,] targetPlattfomr_trs = isAbove ? above_trs : ground_trs;
 
         #region conv NullCheckers
 
-        Transform aboveTopLeft = null;
-        Transform aboveTopMid = null;
-        Transform aboveTopRight = null;
-        Transform aboveLeft = null;
-        Transform aboveMid = null; // potential target
-        Transform aboveRight = null;
-        Transform aboveBotLeft = null;
-        Transform aboveBotMid = null;
-        Transform aboveBotRight = null;
+        //Transform aboveTopLeft = null;
+        //Transform aboveTopMid = null;
+        //Transform aboveTopRight = null;
+        //Transform aboveLeft = null;
+        //Transform aboveMid = null; // potential target
+        //Transform aboveRight = null;
+        //Transform aboveBotLeft = null;
+        //Transform aboveBotMid = null;
+        //Transform aboveBotRight = null;
 
-        MeshFilter aboveTopLeft_mesh = null;
-        MeshFilter aboveTopMid_mesh = null;
-        MeshFilter aboveTopRight_mesh = null;
-        MeshFilter aboveLeft_mesh = null;
-        MeshFilter aboveMid_mesh = null; // potential target
-        MeshFilter aboveRight_mesh = null;
-        MeshFilter aboveBotLeft_mesh = null;
-        MeshFilter aboveBotMid_mesh = null;
-        MeshFilter aboveBotRight_mesh = null;
+        //MeshFilter aboveTopLeft_mesh = null;
+        //MeshFilter aboveTopMid_mesh = null;
+        //MeshFilter aboveTopRight_mesh = null;
+        //MeshFilter aboveLeft_mesh = null;
+        //MeshFilter aboveMid_mesh = null; // potential target
+        //MeshFilter aboveRight_mesh = null;
+        //MeshFilter aboveBotLeft_mesh = null;
+        //MeshFilter aboveBotMid_mesh = null;
+        //MeshFilter aboveBotRight_mesh = null;
 
-        Transform groundTopLeft = null;
-        Transform groundTopMid = null;
-        Transform groundTopRight = null;
-        Transform groundLeft = null;
-        Transform groundMid = null;  // potential target
-        Transform groundRight = null;
-        Transform groundBotLeft = null;
-        Transform groundBotMid = null;
-        Transform groundBotRight = null;
+        //Transform groundTopLeft = null;
+        //Transform groundTopMid = null;
+        //Transform groundTopRight = null;
+        //Transform groundLeft = null;
+        //Transform groundMid = null;  // potential target
+        //Transform groundRight = null;
+        //Transform groundBotLeft = null;
+        //Transform groundBotMid = null;
+        //Transform groundBotRight = null;
 
-        MeshFilter groundTopLeft_mesh = null;
-        MeshFilter groundTopMid_mesh = null;
-        MeshFilter groundTopRight_mesh = null;
-        MeshFilter groundLeft_mesh = null;
-        MeshFilter groundMid_mesh = null; // potential target
-        MeshFilter groundRight_mesh = null;
-        MeshFilter groundBotLeft_mesh = null;
-        MeshFilter groundBotMid_mesh = null;
-        MeshFilter groundBotRight_mesh = null;
+        //MeshFilter groundTopLeft_mesh = null;
+        //MeshFilter groundTopMid_mesh = null;
+        //MeshFilter groundTopRight_mesh = null;
+        //MeshFilter groundLeft_mesh = null;
+        //MeshFilter groundMid_mesh = null; // potential target
+        //MeshFilter groundRight_mesh = null;
+        //MeshFilter groundBotLeft_mesh = null;
+        //MeshFilter groundBotMid_mesh = null;
+        //MeshFilter groundBotRight_mesh = null;
 
         #endregion
 
