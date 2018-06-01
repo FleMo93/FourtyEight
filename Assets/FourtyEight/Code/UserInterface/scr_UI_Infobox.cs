@@ -29,7 +29,10 @@ public class scr_UI_Infobox : MonoBehaviour {
             if (i < attToShow.Count)
             {
                 Attributes[i].Icon.sprite = attToShow[i].Icon;
-                Attributes[i].Value.text = attToShow[i].Value.ToString();
+                if (!attToShow[i].TakeFromLocalDataSet)
+                    Attributes[i].Value.text = attToShow[i].Value.ToString();
+                else
+                    Attributes[i].Value.text = LocalDataSet.Attributes.Where(x => x.Name == attToShow[i].Name).First().Value.ToString();
             }
             else
             {
