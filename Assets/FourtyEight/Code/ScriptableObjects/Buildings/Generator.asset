@@ -35,3 +35,13 @@ MonoBehaviour:
     Value: 1
     UiOrder: 3
     TakeFromLocalDataSet: 0
+  - Name: 22
+    Icon: {fileID: 21300000, guid: ce91154289e6c2b4aa7a7c6192f544de, type: 3}
+    Value: 4
+    UiOrder: 999
+    TakeFromLocalDataSet: 0
+  - Name: 23
+    Icon: {fileID: 21300000, guid: ce91154289e6c2b4aa7a7c6192f544de, type: 3}
+    Value: 2
+    UiOrder: 999
+    TakeFromLocalDataSet: 0

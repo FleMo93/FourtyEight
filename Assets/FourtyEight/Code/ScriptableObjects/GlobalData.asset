@@ -11,10 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a5c430b0dc1f8438438960f37b35db, type: 3}
   m_Name: GlobalData
   m_EditorClassIdentifier: 
-  Stone: 27
-  Coal: 0
-  Iron: 0
-  CrystalDida: 0
-  CrystalGale: 0
-  Energy: 10
+  Stone: 318
+  Coal: 15
+  Iron: 96
+  CrystalDida: 10
+  CrystalGale: 10
+  Energy: 0
   BuildModeActive: {fileID: 0}
