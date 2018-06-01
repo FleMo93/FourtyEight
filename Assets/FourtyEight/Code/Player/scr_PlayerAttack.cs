@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using System.Linq;
+
 public class scr_PlayerAttack : MonoBehaviour
 {
 
@@ -9,14 +11,14 @@ public class scr_PlayerAttack : MonoBehaviour
     public Transform bullet_Projectile;
     public float coolDown_Load = 0;
     public float coolDown = 1;
-
+    public int dmg = 5;
     public float range = 1;
 
     // Update is called once per frame
     void Update()
     {
         coolDown_Load += Time.deltaTime;
-        if (coolDown_Load > coolDown && Input.GetAxis("Fire1") > 0)
+        if (coolDown_Load > coolDown && Input.GetAxis("Jump") > 0)
         {
             if (bullet_Spawn != null)
             {
@@ -27,9 +29,7 @@ public class scr_PlayerAttack : MonoBehaviour
             }
         }
     }
-
-
-
+    
     void ShootWeapon()
     {
         RaycastHit hit;
@@ -44,25 +44,21 @@ public class scr_PlayerAttack : MonoBehaviour
                 I_IDamagable targetDamagable = objectHit.GetComponent<I_IDamagable>();
                 if (targetDamagable != null)
                 {
-                    scr_DataSet.Attribute targetHealth = targetDamagable.GetScrDataSet().Attributes.Find(x => x.Name == scr_Attributes.Attribute.Health);
-
-                    if (targetHealth != null)
+                    so_DataSet.Attribute sotargetHealth = targetDamagable.GetSoDataSet().Attributes.Find(x => x.Name == scr_Attributes.Attribute.Health);
+                    if (sotargetHealth.TakeFromLocalDataSet)
                     {
-                        targetHealth.Value -= 5;
+                        scr_DataSet.Attribute targetHealth = targetDamagable.GetScrDataSet().Attributes.Find(x => x.Name == scr_Attributes.Attribute.Health);
+
+                        if (targetHealth != null)
+                        {
+                            targetHealth.Value -= dmg;
+                        }
                     }
+                    //else //nothing!
+                    //{
+                    //    sotargetHealth.Value -= dmg;
+                    //}
                 }
-
-                //scr_MountainStoneBlock targetDamagable = objectHit.GetComponent<scr_MountainStoneBlock>();
-                //if (targetDamagable != null)
-                //{
-                //    scr_DataSet.Attribute targetHealth = targetDamagable.GetScrDataSet().Attributes.Find(x => x.Name == scr_Attributes.Attribute.Health);
-
-                //    if (targetHealth != null)
-                //    {
-                //        targetHealth.Value -= 5;
-                //    }
-                //}
-                
             }
         }
     }

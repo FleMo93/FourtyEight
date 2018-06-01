@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scr_MountainStoneBlock : MonoBehaviour, I_IClickable, I_IDamagable
+public class scr_MountainStoneBlock : MonoBehaviour, I_IDamagable
 {
     [SerializeField]
     private so_DataSet _Stats;
