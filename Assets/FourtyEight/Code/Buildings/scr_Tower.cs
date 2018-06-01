@@ -19,6 +19,8 @@ public class scr_Tower : MonoBehaviour, I_IClickable, I_IDamagable
     private GameObject _FirePosition;
     [SerializeField]
     private GameObject _LaserPrefab;
+    [SerializeField]
+    private AudioSource shotSource;
 
     private scr_DataSet.Attribute health;
     private so_DataSet.Attribute healthMax;
@@ -117,6 +119,8 @@ public class scr_Tower : MonoBehaviour, I_IClickable, I_IDamagable
 
                 float distance = Vector3.Distance(_FirePosition.transform.position, enemy.transform.position);
                 go.GetComponent<I_ILaser>().SetLength(distance);
+
+                shotSource.Play();
 
                 timeLeftToFire = fireRate.Value;
             }

@@ -497,6 +497,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Stats: {fileID: 11400000, guid: 6ac83afe4ba1b994d9625f7297913a84, type: 2}
+  _SpawnOnDeath: {fileID: 1699443090984796, guid: 21f68bf4da905de478582aeacb77fc64,
+    type: 2}
 --- !u!136 &136126630119767192
 CapsuleCollider:
   m_ObjectHideFlags: 1

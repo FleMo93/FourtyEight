@@ -9,6 +9,8 @@ public class scr_Drone : MonoBehaviour, I_IDamagable, I_IClickable
 {
     [SerializeField]
     private so_DataSet _Stats;
+    [SerializeField]
+    private GameObject _SpawnOnDeath;
 
     private scr_DataSet scrStats;
     private scr_DataSet.Attribute health;
@@ -23,7 +25,6 @@ public class scr_Drone : MonoBehaviour, I_IDamagable, I_IClickable
     private GameObject actualTargetToAttack;
     private GameObject player;
     private Rigidbody myRigidbody;
-    //private List<GameObject> damagables;
 
     private enum States { None, Attack, Move }
     private States state = States.Move;
@@ -265,5 +266,11 @@ public class scr_Drone : MonoBehaviour, I_IDamagable, I_IClickable
     public scr_DataSet GetScrDataSet()
     {
         return scrStats;
+    }
+
+    private void OnDestroy()
+    {
+        GameObject go = Instantiate(_SpawnOnDeath);
+        go.transform.position = this.transform.position;
     }
 }
