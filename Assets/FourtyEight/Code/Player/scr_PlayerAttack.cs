@@ -9,10 +9,25 @@ public class scr_PlayerAttack : MonoBehaviour
 
     public Transform bullet_Spawn;
     public Transform bullet_Projectile;
-    public float coolDown_Load = 0;
-    public float coolDown = 1;
-    public int dmg = 5;
-    public float range = 1;
+
+
+    [SerializeField]
+    private so_DataSet _Stats;
+    [SerializeField]
+    private so_DataSetGlobal _StatsGlobal;
+
+    private float coolDown_Load;
+    private float coolDown; //private so_DataSet.Attribute coolDown;
+    private so_DataSet.Attribute dmg;
+    private so_DataSet.Attribute range;
+
+    void Start()
+    {
+        coolDown_Load = 0;
+        coolDown = 1;// _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.coolDown);
+        dmg = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Damage);
+        range = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Range);
+    }
 
     // Update is called once per frame
     void Update()
@@ -22,9 +37,8 @@ public class scr_PlayerAttack : MonoBehaviour
         {
             if (bullet_Spawn != null)
             {
-                Transform tempB = Instantiate(bullet_Projectile, bullet_Spawn.position, Quaternion.identity);
+                Transform tempParticle = Instantiate(bullet_Projectile, bullet_Spawn.position, Quaternion.identity);
                 coolDown_Load = 0;
-
                 ShootWeapon();
             }
         }
@@ -36,7 +50,7 @@ public class scr_PlayerAttack : MonoBehaviour
         Ray ray = new Ray(bullet_Spawn.position - (bullet_Spawn.right/2), bullet_Spawn.right);
 
         Debug.DrawRay(ray.origin, ray.direction, Color.blue);
-        if (Physics.Raycast(ray, out hit, range))
+        if (Physics.Raycast(ray, out hit, range.Value))
         {
             Transform objectHit = hit.transform;
             if (objectHit)
@@ -51,7 +65,7 @@ public class scr_PlayerAttack : MonoBehaviour
 
                         if (targetHealth != null)
                         {
-                            targetHealth.Value -= dmg;
+                            targetHealth.Value -= dmg.Value;
                         }
                     }
                     //else //nothing!
