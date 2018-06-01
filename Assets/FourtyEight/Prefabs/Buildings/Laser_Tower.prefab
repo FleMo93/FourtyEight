@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 4122969010360530}
   - component: {fileID: 65918594060550038}
   - component: {fileID: 114769413840994352}
+  - component: {fileID: 114795467277767108}
   m_Layer: 0
   m_Name: Laser_Tower
   m_TagString: Untagged
@@ -426,9 +427,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1920396918087864}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bcba991273a07b41bf778021d085243, type: 3}
+  m_Script: {fileID: 11500000, guid: e5b831bab48bf6e4c92b9e497928cbda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Healt: 100
-  Iron: 0
-  IronToGain: 0
+  _Stats: {fileID: 11400000, guid: c01eb1d390b8c4f4587325aea92bc300, type: 2}
+  _StatsGlobal: {fileID: 11400000, guid: a726aecab9f495f498050b72808932d0, type: 2}
+--- !u!114 &114795467277767108
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1920396918087864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9f8b0f174f5adc40b2ec9bd8ffdfe8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Attributes:
+  - Name: 0
+    Value: 0
