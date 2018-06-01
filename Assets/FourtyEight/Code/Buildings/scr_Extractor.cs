@@ -3,16 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scr_Extractor : MonoBehaviour, I_IClickable, I_IDamagable
+public class scr_Extractor : MonoBehaviour, I_IClickable, I_IDamagable, I_IExtractor
 {
-    public enum Resources { None, Iron, Stone, Coal, Crystal_Dida, Crystal_Gale }
+    //public enum Resources { None, Iron, Stone, Coal, Crystal_Dida, Crystal_Gale }
 
     [SerializeField]
     private so_DataSet _Stats;
     [SerializeField]
     private so_DataSetGlobal _StatsGlobal;
     [SerializeField]
-    public Resources ResourceToTake = Resources.None;
+    private scr_Attributes.Attribute resourceToTake = scr_Attributes.Attribute.Coal;
+
 
     private so_DataSet.Attribute ressourcePerSecond;
     private scr_DataSet.Attribute health;
@@ -26,29 +27,26 @@ public class scr_Extractor : MonoBehaviour, I_IClickable, I_IDamagable
     {
         scr_Attributes.Attribute ressourcePerScondEnum = scr_Attributes.Attribute.Coal_per_second;
 
-        switch(ResourceToTake)
+        switch(resourceToTake)
         {
-            case Resources.Coal:
+            case scr_Attributes.Attribute.Coal:
                 ressourcePerScondEnum = scr_Attributes.Attribute.Coal_per_second;
                 break;
-            case Resources.Crystal_Dida:
+            case scr_Attributes.Attribute.Dida:
                 ressourcePerScondEnum = scr_Attributes.Attribute.Dida_per_second;
                 break;
 
-            case Resources.Crystal_Gale:
+            case scr_Attributes.Attribute.Gale:
                 ressourcePerScondEnum = scr_Attributes.Attribute.Gale_per_second;
                 break;
 
-            case Resources.Iron:
+            case scr_Attributes.Attribute.Iron:
                 ressourcePerScondEnum = scr_Attributes.Attribute.Iron_per_second;
                 break;
 
-            case Resources.Stone:
+            case scr_Attributes.Attribute.Stone:
                 ressourcePerScondEnum = scr_Attributes.Attribute.Stone_per_second;
                 break;
-
-            case Resources.None:
-                return;
         }
 
         ressourcePerSecond = _Stats.Attributes.Find(x => x.Name == ressourcePerScondEnum);
@@ -72,11 +70,6 @@ public class scr_Extractor : MonoBehaviour, I_IClickable, I_IDamagable
             Destroy(this.gameObject);
         }
 
-        if(ResourceToTake == Resources.None)
-        {
-            return;
-        }
-
         if(_StatsGlobal.Energy < 0 || lastEnergyState)
         {
             animator.Play("Idle");
@@ -91,24 +84,24 @@ public class scr_Extractor : MonoBehaviour, I_IClickable, I_IDamagable
 
         if(timeLeft <= 0)
         {
-            switch(ResourceToTake)
+            switch(resourceToTake)
             {
-                case Resources.Coal:
+                case scr_Attributes.Attribute.Coal:
                     _StatsGlobal.Coal += (int)ressourcePerSecond.Value;
                     break;
-                case Resources.Crystal_Dida:
+                case scr_Attributes.Attribute.Dida:
                     _StatsGlobal.CrystalDida += (int)ressourcePerSecond.Value;
                     break;
 
-                case Resources.Crystal_Gale:
+                case scr_Attributes.Attribute.Gale:
                     _StatsGlobal.CrystalGale += (int)ressourcePerSecond.Value;
                     break;
 
-                case Resources.Iron:
+                case scr_Attributes.Attribute.Iron:
                     _StatsGlobal.Iron += (int)ressourcePerSecond.Value;
                     break;
 
-                case Resources.Stone:
+                case scr_Attributes.Attribute.Stone:
                     _StatsGlobal.Stone += (int)ressourcePerSecond.Value;
                     break;
             }
@@ -130,5 +123,10 @@ public class scr_Extractor : MonoBehaviour, I_IClickable, I_IDamagable
     private void OnDestroy()
     {
         _StatsGlobal.Energy += (int)energyCost.Value;
+    }
+
+    public void SetRessourceToTake(scr_Attributes.Attribute ressourceToTake)
+    {
+        resourceToTake = ressourceToTake;
     }
 }
