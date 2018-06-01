@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114386548061707102}
   - component: {fileID: 114859653212458722}
   m_Layer: 0
-  m_Name: Generator
+  m_Name: GeneratorGhost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1015,7 +1015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Attributes:
-  - Name: Health
+  - Name: 0
     Value: 100
 --- !u!114 &114859653212458722
 MonoBehaviour:

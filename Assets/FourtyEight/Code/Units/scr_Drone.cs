@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,18 +11,21 @@ public class scr_Drone : MonoBehaviour, I_IDamagable, I_IClickable
     private so_DataSet _Stats;
 
     private scr_DataSet scrStats;
-
     private scr_DataSet.Attribute health;
     private so_DataSet.Attribute healthMax;
     private so_DataSet.Attribute visibilityRange;
     private so_DataSet.Attribute rotationSpeed;
-    private NavMeshPath path;
-
-    private GameObject actualTarget;
+    private so_DataSet.Attribute movementSpeed;
+    private so_DataSet.Attribute fireRate;
+    private so_DataSet.Attribute damage;
+    private List<Vector3> path;
+    private GameObject actualTargetToAttack;
     private GameObject player;
+    private Rigidbody myRigidbody;
+    private List<GameObject> damagables;
 
     private enum States { None, Attack, Move }
-    private States state = States.None;
+    private States state = States.Move;
 
     private void Start()
     {
@@ -30,15 +34,21 @@ public class scr_Drone : MonoBehaviour, I_IDamagable, I_IClickable
         healthMax = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Maximum_Health);
         visibilityRange = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Visibility_Range);
         rotationSpeed = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Rotation_speed);
+        movementSpeed = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Movement_Speed);
+        fireRate = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Fire_rate);
+        damage = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Damage);
 
         health.Value = healthMax.Value;
 
-        path = new NavMeshPath();
         SphereCollider collider = gameObject.AddComponent<SphereCollider>();
         collider.isTrigger = true;
         collider.radius = visibilityRange.Value;
 
         player = GameObject.FindGameObjectWithTag(scr_Tags.Player);
+        path = new List<Vector3>();
+        damagables = new List<GameObject>();
+
+        myRigidbody = GetComponent<Rigidbody>();
 
         if(player == null)
         {
@@ -57,13 +67,31 @@ public class scr_Drone : MonoBehaviour, I_IDamagable, I_IClickable
         }
 
         CalculatePath();
-
-        if(state == States.None)
+        
+        if(path.Count == 0)
         {
-
+            state = States.Attack;
+        }
+        else
+        {
+            state = States.Move;
         }
 
-        Walk();
+        if(state == States.Move)
+        {
+            Walk();
+        }
+        else if(state == States.Attack)
+        {
+            myRigidbody.velocity = Vector3.zero;
+            actualTargetToAttack = GetNearesDamagable();
+
+            if(actualTargetToAttack != null)
+            {
+                RotateTowards(actualTargetToAttack.transform.position);
+                Attack(actualTargetToAttack);
+            }
+        }
     }
 
     void Walk()
@@ -75,8 +103,16 @@ public class scr_Drone : MonoBehaviour, I_IDamagable, I_IClickable
             return;
         }
 
+        nextPath = new Vector3(nextPath.Value.x,
+            this.transform.position.y,
+            nextPath.Value.z);
 
         RotateTowards(nextPath.Value);
+
+        Vector3 direction = (nextPath.Value - this.transform.position).normalized;
+        direction.y = 0;
+
+        myRigidbody.velocity = direction * movementSpeed.Value;
     }
 
     void RotateTowards(Vector3 v3)
@@ -94,46 +130,114 @@ public class scr_Drone : MonoBehaviour, I_IDamagable, I_IClickable
 
     Vector3? GetNexPath()
     {
-        if (path.corners.Length == 0)
+        List<Vector3> v3ToDelete = new List<Vector3>();
+        Vector3? v3ToReturn = null;
+
+        foreach(Vector3 v3 in path)
         {
-            return null;
+            Vector3 point = new Vector3(v3.x, this.transform.position.y, v3.z);
+
+            if (Vector3.Distance(point, this.transform.position) < 0.2f)
+            {
+                v3ToDelete.Add(v3);
+            }
+            else
+            {
+                v3ToReturn = v3;
+            }
         }
-        else if (path.corners.Length == 1 &&
-            Mathf.Approximately(path.corners[0].x, this.transform.position.x) &&
-            Mathf.Approximately(path.corners[0].z, this.transform.position.z))
+
+        foreach(Vector3 v3 in v3ToDelete)
         {
-            return null;
+            path.Remove(v3);
         }
-        else if (path.corners.Length == 2 &&
-            Mathf.Approximately(path.corners[1].x, this.transform.position.x) &&
-            Mathf.Approximately(path.corners[1].z, this.transform.position.z))
-        {
-            return null;
-        }
-        else
-        {
-            return path.corners[1];
-        }
+
+        return v3ToReturn;
     }
 
     void DrawPath()
     {
-        for (int i = 0; i < path.corners.Length - 1; i++)
-            Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.red);
+        for (int i = 0; i < path.Count - 1; i++)
+            Debug.DrawLine(path[i], path[i + 1], Color.red);
     }
 
-    float timeToPathCalculation = 1;
+    float timeToPathCalculation = 0;
     void CalculatePath()
     {
         timeToPathCalculation -= Time.deltaTime;
 
         if (timeToPathCalculation <= 0)
         {
+            NavMeshPath path = new NavMeshPath();
             NavMesh.CalculatePath(this.transform.position, new Vector3(0, 0, 0), NavMesh.AllAreas, path);
+            this.path.Clear();
+            //this.path.AddRange(path.corners.OrderByDescending(x => Vector3.Distance(this.transform.position, x)));
+
+            for(int i = path.corners.Length - 1; i >= 0; i--)
+            {
+                this.path.Add(path.corners[i]);
+            }
+
+            //this.path.AddRange(path.corners);
             timeToPathCalculation = 1;
         }
     }
 
+    GameObject GetNearesDamagable()
+    {
+        float lastRange = float.MaxValue;
+        GameObject lastGo = null;
+
+        foreach(GameObject go in damagables)
+        {
+            if(go == null)
+            {
+                damagables.Remove(go);
+            }
+
+            if(go == player)
+            {
+                return go;
+            }
+
+            float range = Vector3.Distance(this.transform.position, go.transform.position);
+
+            if(range < lastRange)
+            {
+                lastRange = range;
+                lastGo = go;
+            }
+        }
+
+        return lastGo;
+    }
+
+    float timeToAttack = 0;
+    void Attack(GameObject go)
+    {
+        timeToAttack -= Time.deltaTime;
+
+        if(timeToAttack <= 0)
+        {
+
+            I_IDamagable dmgable = go.GetComponent<I_IDamagable>();
+
+            so_DataSet.Attribute healthSo = dmgable.GetSoDataSet().Attributes.Where(x => x.Name == scr_Attributes.Attribute.Health).First();
+
+            if(healthSo.TakeFromLocalDataSet)
+            {
+                scr_DataSet.Attribute healthScr = dmgable.GetScrDataSet().Attributes.Where(x => x.Name == scr_Attributes.Attribute.Health).First();
+                healthScr.Value -= damage.Value;
+            }
+            else
+            {
+                healthSo.Value -= damage.Value;
+            }
+            
+
+            timeToAttack = fireRate.Value;
+        }
+    }
 
     public so_DataSet GetSoDataSet()
     {
@@ -143,5 +247,25 @@ public class scr_Drone : MonoBehaviour, I_IDamagable, I_IClickable
     public scr_DataSet GetScrDataSet()
     {
         return scrStats;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        I_IDamagable dmg = other.GetComponent<I_IDamagable>();
+
+        if(dmg != null && !damagables.Contains(other.gameObject))
+        {
+            damagables.Add(other.gameObject);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        I_IDamagable dmg = other.GetComponent<I_IDamagable>();
+
+        if (dmg != null)
+        {
+            damagables.Remove(other.gameObject);
+        }
     }
 }
