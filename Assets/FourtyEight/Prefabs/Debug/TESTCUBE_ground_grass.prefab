@@ -23,13 +23,12 @@ GameObject:
   - component: {fileID: 23470914893142310}
   - component: {fileID: 65918086673379440}
   - component: {fileID: 114265174624614492}
-  - component: {fileID: 208557869080223560}
   m_Layer: 0
   m_Name: TESTCUBE_ground_grass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &1980720891109970
 GameObject:
@@ -44,7 +43,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &4220737040810536
 Transform:
@@ -138,18 +137,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bf0dc1d84c342b4ab0d42126421e4ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!208 &208557869080223560
-NavMeshObstacle:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1796132009417498}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
-  m_MoveThreshold: 0.1
-  m_Carve: 1
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5
