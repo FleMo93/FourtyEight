@@ -36,7 +36,7 @@ public class scr_UI_BuildingButton : MonoBehaviour, IPointerDownHandler {
     void Update () {
 
         buildable = GlobalDataSet.Coal >= CostCoal && GlobalDataSet.Stone >= CostStone && GlobalDataSet.Iron >= CostIron && GlobalDataSet.CrystalDida >= CostDida &&
-            GlobalDataSet.CrystalGale >= CostGale && GlobalDataSet.Energy >= CostEnergy;
+            GlobalDataSet.CrystalGale >= CostGale;
         this.GetComponent<Button>().interactable = buildable;
 
 
