@@ -42,17 +42,17 @@ MonoBehaviour:
     TakeFromLocalDataSet: 0
   - Name: 21
     Icon: {fileID: 0}
-    Value: 2
+    Value: 200
     UiOrder: 999
     TakeFromLocalDataSet: 0
   - Name: 17
     Icon: {fileID: 0}
-    Value: 3
+    Value: 0.7
     UiOrder: 999
     TakeFromLocalDataSet: 0
   - Name: 20
     Icon: {fileID: 0}
-    Value: 1
+    Value: 2
     UiOrder: 999
     TakeFromLocalDataSet: 0
   - Name: 22
