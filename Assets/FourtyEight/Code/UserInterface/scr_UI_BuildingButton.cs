@@ -9,9 +9,6 @@ public class scr_UI_BuildingButton : MonoBehaviour, IPointerDownHandler {
 
     public so_DataSet DataSet;
     public so_DataSetGlobal GlobalDataSet;
-
-    public string SearchStrings1;
-    public string SearchStrings2;
     public GameObject PreBuildObject;
     public GameObject BuildObject;
     GameObject previewObject;

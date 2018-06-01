@@ -32,7 +32,12 @@ public static class scr_Attributes
         Cost_Coal,
         Cost_Gale,
         Cost_Dida,
-        Visibility_Range
+        Visibility_Range,
+        Extractor,
+        Generator,
+        Wall,
+        Gate,
+        Tower
 
     }
 }
