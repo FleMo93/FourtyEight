@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Name: Level1_Waves
   m_EditorClassIdentifier: 
   Waves:
-  - SpawnAfterSeconds: 0
+  - SpawnAfterSeconds: 2
     Groups:
     - EnemyToSpawnPrefab: {fileID: 1813470605613880, guid: e449aff9ba5f1e746ab0d6a6f47fad01,
         type: 2}
       Count: 10
-  - SpawnAfterSeconds: 0
-    Groups: []
+  - SpawnAfterSeconds: 300
+    Groups:
+    - EnemyToSpawnPrefab: {fileID: 1813470605613880, guid: e449aff9ba5f1e746ab0d6a6f47fad01,
+        type: 2}
+      Count: 10
+    - EnemyToSpawnPrefab: {fileID: 1813470605613880, guid: e449aff9ba5f1e746ab0d6a6f47fad01,
+        type: 2}
+      Count: 10
