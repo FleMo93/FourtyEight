@@ -11,13 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a5c430b0dc1f8438438960f37b35db, type: 3}
   m_Name: GlobalData
   m_EditorClassIdentifier: 
-  Stone: 203
-  Coal: 376
-  Iron: 96
-  CrystalDida: 350
-  CrystalGale: 47
-  Energy: 103
-  time_Level: 1.2546881
-  time_Game: 1.2546881
-  time_forNextWave: 0.74531186
+  Stone: 0
+  Coal: 0
+  Iron: 0
+  CrystalDida: 0
+  CrystalGale: 0
+  Energy: 0
+  time_Level: 0
+  time_Game: 0
+  time_forNextWave: 0
   BuildModeActive: {fileID: 0}
