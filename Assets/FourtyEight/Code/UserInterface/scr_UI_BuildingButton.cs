@@ -61,6 +61,7 @@ public class scr_UI_BuildingButton : MonoBehaviour, IPointerDownHandler {
 
                 if (Type == scr_Attributes.Attribute.Tower && hit.collider.GetComponent<I_IBuildableGenerator>() != null)
                 {
+                    Debug.Log("test");
                     previewObject.transform.position = hit.collider.transform.Find("BuildPos").position;
                 }
             }
@@ -79,8 +80,7 @@ public class scr_UI_BuildingButton : MonoBehaviour, IPointerDownHandler {
                 buildPosOK = false;
                 GlobalDataSet.BuildModeActive = null;
             }
-
-            if (!buildPosOK && Input.GetMouseButtonDown(0))
+            else if (!buildPosOK && Input.GetMouseButtonDown(0))
             {
                 Destroy(previewObject);
                 buildModeActive = false;
