@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 65923261599533450}
   - component: {fileID: 114646865423929642}
   - component: {fileID: 114770675257188854}
+  - component: {fileID: 208789822795712410}
   m_Layer: 0
   m_Name: Gale
   m_TagString: Untagged
@@ -229,3 +230,18 @@ MonoBehaviour:
     Value: 10
   - Name: 11
     Value: 10
+--- !u!208 &208789822795712410
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1895904381262724}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1, y: 1, z: 1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1, z: 0}
+  m_TimeToStationary: 0.5

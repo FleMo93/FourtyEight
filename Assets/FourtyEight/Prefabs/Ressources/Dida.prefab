@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 65304977690235754}
   - component: {fileID: 114829541143580970}
   - component: {fileID: 114584833314380720}
+  - component: {fileID: 208360204288823218}
   m_Layer: 0
   m_Name: Dida
   m_TagString: Untagged
@@ -229,3 +230,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _Stats: {fileID: 11400000, guid: 133ef576d7e5dab499104e294965b4e8, type: 2}
   _StatsGlobal: {fileID: 11400000, guid: a726aecab9f495f498050b72808932d0, type: 2}
+--- !u!208 &208360204288823218
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1580822168487290}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1, y: 1, z: 1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 1, z: 0}
+  m_TimeToStationary: 0.5
