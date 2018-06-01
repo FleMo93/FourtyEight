@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4324060218829606}
   - component: {fileID: 33235419113610574}
   - component: {fileID: 23872011955743630}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4733723250602080}
   - component: {fileID: 33780049149661054}
   - component: {fileID: 23733061582730698}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cannon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53,7 +53,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4555655365866950}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: FirePosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 4070780621747284}
   - component: {fileID: 33171062837846060}
   - component: {fileID: 23230275713400844}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Body2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 4444388440483782}
   - component: {fileID: 33586783867781660}
   - component: {fileID: 23535908475479414}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 4124878518065990}
   - component: {fileID: 33619892440147562}
   - component: {fileID: 23870469608460334}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Ladder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 65918594060550038}
   - component: {fileID: 54616484962711924}
   - component: {fileID: 114417046283060118}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: LaserTowerGhost
   m_TagString: Untagged
   m_Icon: {fileID: 0}

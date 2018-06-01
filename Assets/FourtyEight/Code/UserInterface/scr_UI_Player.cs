@@ -6,9 +6,12 @@ using UnityEngine.UI;
 
 public class scr_UI_Player : MonoBehaviour {
 
+    public so_DataSetGlobal GlobalDataSet;
     public so_DataSet DataSet;
     public Slider Healthbar;
     public Text Healthtext;
+    public Text GameTime;
+    public Text NextSpawnTime;
     so_DataSet.Attribute AttributeHealth;
     scr_DataSet.Attribute LocalAttributeHealth;
 
@@ -47,5 +50,7 @@ public class scr_UI_Player : MonoBehaviour {
         Healthbar.value = LocalAttributeHealth.Value;
         Healthtext.text = LocalAttributeHealth.Value.ToString();
 
+        GameTime.text = ((int)GlobalDataSet.time_Game).ToString();
+        NextSpawnTime.text = ((int)GlobalDataSet.time_forNextWave).ToString();
     }
 }
