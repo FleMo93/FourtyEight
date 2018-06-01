@@ -6,6 +6,11 @@ public class scr_UI_BuildingExtractor : MonoBehaviour, I_IBuildableExtractor {
 
     public scr_Attributes.Attribute Type;
 
+    public scr_Attributes.Attribute GetOreType()
+    {
+        return Type;
+    }
+
     // Use this for initialization
     void Start () {
 		

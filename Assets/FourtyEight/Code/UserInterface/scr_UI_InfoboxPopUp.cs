@@ -5,7 +5,11 @@ using UnityEngine.EventSystems;
 
 public class scr_UI_InfoboxPopUp : MonoBehaviour {
 
+    public so_DataSetGlobal GlobalData;
+    public float DisableTime = 1f;
     public GameObject InfoBox;
+    float disabletimer;
+    bool enable;
 
 	// Use this for initialization
 	void Start () {
@@ -14,7 +18,16 @@ public class scr_UI_InfoboxPopUp : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!EventSystem.current.IsPointerOverGameObject() && Input.GetMouseButtonDown(0))
+        if (GlobalData.BuildModeActive != null)
+            disabletimer = DisableTime;
+
+        if (disabletimer > 0)
+            disabletimer -= Time.deltaTime;
+
+        enable = disabletimer <= 0;
+
+        
+        if (!EventSystem.current.IsPointerOverGameObject() && Input.GetMouseButtonDown(0) && enable)
         {
             Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f);
             Ray ray = Camera.main.ScreenPointToRay(mousePos);

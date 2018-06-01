@@ -57,6 +57,8 @@ GameObject:
   - component: {fileID: 135273924167808236}
   - component: {fileID: 114161372694631340}
   - component: {fileID: 114853597864510222}
+  - component: {fileID: 114022848722315494}
+  - component: {fileID: 114078032291629108}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -455,6 +457,33 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 2
+--- !u!114 &114022848722315494
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1105983643637664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0dc8806db0878642800a62ca69eff04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Stats: {fileID: 11400000, guid: ee7349bcfa0039646a603a1655ce942f, type: 2}
+  _StatsGlobal: {fileID: 11400000, guid: a726aecab9f495f498050b72808932d0, type: 2}
+--- !u!114 &114078032291629108
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1105983643637664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9f8b0f174f5adc40b2ec9bd8ffdfe8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Attributes:
+  - Name: 0
+    Value: 100
 --- !u!114 &114161372694631340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -466,9 +495,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecf9cbab92690974586ddbee95c5bbbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rigid: {fileID: 0}
-  power: 7
-  rotarePower: 2
+  Rigid: {fileID: 54339079941874356}
+  bullet_Spawn: {fileID: 4857662153647630}
+  bullet_Projectile: {fileID: 4963024907094852, guid: 966dbf1c8ec3db04f86c77117f37ee9e,
+    type: 2}
+  _Stats: {fileID: 11400000, guid: ee7349bcfa0039646a603a1655ce942f, type: 2}
+  _StatsGlobal: {fileID: 11400000, guid: a726aecab9f495f498050b72808932d0, type: 2}
 --- !u!114 &114853597864510222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -483,9 +515,8 @@ MonoBehaviour:
   bullet_Spawn: {fileID: 4857662153647630}
   bullet_Projectile: {fileID: 4963024907094852, guid: 966dbf1c8ec3db04f86c77117f37ee9e,
     type: 2}
-  coolDown_Load: 0
-  coolDown: 1
-  range: 1
+  _Stats: {fileID: 11400000, guid: ee7349bcfa0039646a603a1655ce942f, type: 2}
+  _StatsGlobal: {fileID: 11400000, guid: a726aecab9f495f498050b72808932d0, type: 2}
 --- !u!135 &135273924167808236
 SphereCollider:
   m_ObjectHideFlags: 1

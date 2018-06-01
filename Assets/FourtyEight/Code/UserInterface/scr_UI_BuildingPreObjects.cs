@@ -29,7 +29,6 @@ public class scr_UI_BuildingPreObjects : MonoBehaviour {
     }
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("Col");
         Buildable = false;
     }
 

@@ -11,14 +11,17 @@ public class scr_UI_BuildingButton : MonoBehaviour, IPointerDownHandler {
     public so_DataSetGlobal GlobalDataSet;
     public GameObject PreBuildObject;
     public GameObject BuildObject;
+    public scr_Attributes.Attribute Type;
+
+    scr_Attributes.Attribute oreType;
     GameObject previewObject;
 
-    float CostStone;
-    float CostCoal;
-    float CostIron;
-    float CostDida;
-    float CostGale;
-    float CostEnergy;
+    float CostStone = 0;
+    float CostCoal = 0;
+    float CostIron = 0;
+    float CostDida = 0;
+    float CostGale = 0;
+    float CostEnergy = 0;
 
     bool buildable;
     bool buildModeActive;
@@ -31,6 +34,7 @@ public class scr_UI_BuildingButton : MonoBehaviour, IPointerDownHandler {
 
     // Update is called once per frame
     void Update () {
+
         buildable = GlobalDataSet.Coal >= CostCoal && GlobalDataSet.Stone >= CostStone && GlobalDataSet.Iron >= CostIron && GlobalDataSet.CrystalDida >= CostDida &&
             GlobalDataSet.CrystalGale >= CostGale && GlobalDataSet.Energy >= CostEnergy;
         this.GetComponent<Button>().interactable = buildable;
@@ -44,16 +48,26 @@ public class scr_UI_BuildingButton : MonoBehaviour, IPointerDownHandler {
 
             if (Physics.Raycast(ray, out hit, 9999))
             {
-                if (hit.collider.GetComponent<I_IBuildableExtractor>() != null)
+                if (Type == scr_Attributes.Attribute.Extractor && hit.collider.GetComponent<I_IBuildableExtractor>() != null)
                 {
                     previewObject.transform.position = hit.collider.transform.Find("BuildPos").position;
-                    buildPosOK = previewObject.GetComponent< scr_UI_BuildingPreObjects>().Buildable;
+                    oreType = hit.collider.GetComponent<scr_UI_BuildingExtractor>().GetOreType();
+                }
+
+                if (Type == scr_Attributes.Attribute.Generator && hit.collider.GetComponent<I_IBuildableGenerator>() != null)
+                {
+                    previewObject.transform.position = hit.collider.transform.Find("BuildPos").position;
                 }
             }
+
+            buildPosOK = previewObject.GetComponent<scr_UI_BuildingPreObjects>().Buildable;
+
 
             if (buildPosOK && Input.GetMouseButtonDown(0))
             {
                 GameObject buildObject = Instantiate(BuildObject);
+                if (Type == scr_Attributes.Attribute.Extractor)
+                    buildObject.GetComponent<I_IExtractor>().SetRessourceToTake(oreType);
                 buildObject.transform.position = previewObject.transform.position;
                 Destroy(previewObject);
                 buildModeActive = false;
