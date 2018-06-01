@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488abb5d6faa3004aad3e30c7724704a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 0.6
+  lifeTime: 0.8
 --- !u!198 &198464558373897324
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -4725,7 +4725,7 @@ ParticleSystem:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1783960598156802}
   serializedVersion: 5
-  lengthInSec: 4
+  lengthInSec: 10
   simulationSpeed: 1
   stopAction: 0
   looping: 1
@@ -4797,7 +4797,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 2
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -5370,7 +5370,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.01
+      value: 0.4
       mode: 0
       spread: 0
       speed:
@@ -5489,7 +5489,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 50
+      scalar: 80
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -5595,7 +5595,7 @@ ParticleSystem:
     m_BurstCount: 0
     m_Bursts: []
   SizeModule:
-    enabled: 0
+    enabled: 1
     curve:
       serializedVersion: 2
       minMaxState: 1
@@ -5607,20 +5607,20 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 0
-          outSlope: 1
+          inSlope: 11.487179
+          outSlope: 11.487179
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.33333334
+          outWeight: 0.0718232
         - serializedVersion: 3
-          time: 1
-          value: 1
-          inSlope: 1
-          outSlope: 0
+          time: 0.35351562
+          value: 0
+          inSlope: 2.5325284
+          outSlope: 2.5325284
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.33333334
+          inWeight: 0.27734375
           outWeight: 0.33333334
         m_PreInfinity: 2
         m_PostInfinity: 2
