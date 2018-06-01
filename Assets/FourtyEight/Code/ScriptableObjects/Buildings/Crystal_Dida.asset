@@ -20,8 +20,3 @@ MonoBehaviour:
     Value: 10
     UiOrder: 1
     TakeFromLocalDataSet: 1
-  - Name: 1
-    Icon: {fileID: 21300000, guid: c2b2fa45a080924438eb29c353296192, type: 3}
-    Value: 10
-    UiOrder: 999
-    TakeFromLocalDataSet: 0

@@ -17,7 +17,7 @@ public class scr_Ore : MonoBehaviour, I_IClickable, I_IDamagable
     {
         healthMax = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Maximum_Health);
         health = GetComponent<scr_DataSet>().Attributes.Find(x => x.Name == scr_Attributes.Attribute.Health);
-        health.Value = healthMax.Value;
+        //health.Value = healthMax.Value;
     }
     
 

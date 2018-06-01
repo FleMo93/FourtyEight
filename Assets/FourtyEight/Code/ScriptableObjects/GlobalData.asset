@@ -13,7 +13,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Stone: 105
   Coal: 79
-  Iron: 91
+  Iron: 985
   CrystalDida: 101
   CrystalGale: 106
-  Energy: 48
+  Energy: 189
+  BuildModeActive: {fileID: 0}

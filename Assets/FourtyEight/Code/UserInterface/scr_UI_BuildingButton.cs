@@ -10,8 +10,8 @@ public class scr_UI_BuildingButton : MonoBehaviour, IPointerDownHandler {
     public so_DataSet DataSet;
     public so_DataSetGlobal GlobalDataSet;
 
-    public string SearchString;
-    public string SearchString2;
+    public string SearchStrings1;
+    public string SearchStrings2;
     public GameObject PreBuildObject;
     public GameObject BuildObject;
     GameObject previewObject;
@@ -41,15 +41,13 @@ public class scr_UI_BuildingButton : MonoBehaviour, IPointerDownHandler {
 
         if (buildModeActive && !EventSystem.current.IsPointerOverGameObject() && GlobalDataSet.BuildModeActive == this.gameObject)
         {
-            Debug.Log("FUCK");
             Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f);
             Ray ray = Camera.main.ScreenPointToRay(mousePos);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, 9999))
             {
-                Debug.Log(DataSet.Name.ToString());
-                if (hit.collider.gameObject.name.ToLower().Contains(SearchString) && hit.collider.gameObject.name.ToLower().Contains(SearchString2))
+                if (hit.collider.GetComponent<I_IBuildableExtractor>() != null)
                 {
                     previewObject.transform.position = hit.collider.transform.Find("BuildPos").position;
                     buildPosOK = previewObject.GetComponent< scr_UI_BuildingPreObjects>().Buildable;
@@ -85,15 +83,6 @@ public class scr_UI_BuildingButton : MonoBehaviour, IPointerDownHandler {
     {
         if (this.GetComponent<Button>().interactable)
         {
-            if (buildModeActive)
-            {
-                Destroy(previewObject);
-                buildModeActive = false;
-                buildPosOK = false;
-                RefundCosts();
-                GlobalDataSet.BuildModeActive = null;
-            }
-
             if (!buildModeActive)
             {
                 PayCosts();
@@ -101,7 +90,6 @@ public class scr_UI_BuildingButton : MonoBehaviour, IPointerDownHandler {
                 previewObject = Instantiate(PreBuildObject);
                 GlobalDataSet.BuildModeActive = this.gameObject;
             }
-
         }
     }
 
