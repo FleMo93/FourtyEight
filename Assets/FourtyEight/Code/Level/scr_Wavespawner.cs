@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class scr_Wavespawner : MonoBehaviour {
 
+    public so_DataSetGlobal gds;
     public scr_WaveSet WaveSet;
     public int nextWave = 0;
 
+    public float combinedTimeFromLastWaves = 0;
 
 
     public Vector2 TopLeft_BoxPoint_Position = new Vector2 ();
@@ -15,6 +17,9 @@ public class scr_Wavespawner : MonoBehaviour {
     public Vector2 RandomIntegeredPosition;
     // Update is called once per frame
     void Update () {
+
+
+        gds.time_forNextWave = scr_LevelManager.GetLevelTime() - WaveSet.Waves[nextWave].SpawnAfterSeconds - combinedTimeFromLastWaves;
 
         if (scr_LevelManager.GetLevelTime() > WaveSet.Waves[nextWave].SpawnAfterSeconds)
         {
@@ -28,10 +33,16 @@ public class scr_Wavespawner : MonoBehaviour {
                 }
             }
 
+            combinedTimeFromLastWaves += WaveSet.Waves[nextWave].SpawnAfterSeconds;
 
             nextWave++;
         }
 
-        if (nextWave >= WaveSet.Waves.Length) enabled = false;
+        if (nextWave >= WaveSet.Waves.Length)
+        {
+            gds.time_forNextWave = 0;
+           enabled = false;
+        }
+
 	}
 }

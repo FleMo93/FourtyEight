@@ -1,16 +1,29 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class scr_LevelManager : MonoBehaviour {
+public class scr_LevelManager : MonoBehaviour
+{
 
-    private static float  initialTime;
+
+    public static so_DataSetGlobal gds;
+    public  so_DataSetGlobal gds_nonStatic;
 
     void Awake()
     {
-        initialTime = Time.time;
+        gds = gds_nonStatic;
+        gds.SetInitTime(Time.time);
     }
-    public static float GetLevelTime() {
-        return Time.time - initialTime ;
+
+    void Update()
+    {
+        gds.time_Game = Time.time;
+        gds.time_Level = Time.time - gds.GetInitTime();
+    }
+
+    public static float GetLevelTime()
+    {
+        return gds.time_Level;
     }
 }

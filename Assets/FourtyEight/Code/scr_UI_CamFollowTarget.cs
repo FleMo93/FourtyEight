@@ -20,7 +20,11 @@ public class scr_UI_CamFollowTarget : MonoBehaviour {
         }
         else
         {
-            target = GameObject.FindGameObjectWithTag(scr_Tags.Player).transform;
+            GameObject tempG = GameObject.FindGameObjectWithTag(scr_Tags.Player);
+            if (tempG !=null)
+            {
+                target = tempG.transform;
+            }
         }
 	}
 }

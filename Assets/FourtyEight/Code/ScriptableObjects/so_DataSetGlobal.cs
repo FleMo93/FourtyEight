@@ -13,6 +13,11 @@ public class so_DataSetGlobal : ScriptableObject {
     public int CrystalGale;
     public int Energy;
 
+    private float initialTime;
+    public float time_Level;
+    public float time_Game;
+    public float time_forNextWave;
+
     public GameObject BuildModeActive;
 
     public void ResetStats()
@@ -24,5 +29,15 @@ public class so_DataSetGlobal : ScriptableObject {
         CrystalGale = 0;
         Energy = 0;
         BuildModeActive = null;
+    }
+
+    public float GetInitTime()
+    {
+        return initialTime;
+    }
+
+    public void SetInitTime(float i)
+    {
+        initialTime = i;
     }
 }
