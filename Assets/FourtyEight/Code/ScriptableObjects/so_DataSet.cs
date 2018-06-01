@@ -15,7 +15,7 @@ public class so_DataSet : ScriptableObject {
     [System.Serializable]
     public class Attribute
     {
-        public string Name;
+        public scr_Attributes.Attribute Name;
         public Sprite Icon;
         public float Value;
         public int UiOrder = 999;

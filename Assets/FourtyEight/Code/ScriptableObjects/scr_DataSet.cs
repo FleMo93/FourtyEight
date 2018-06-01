@@ -9,7 +9,7 @@ public class scr_DataSet : MonoBehaviour
     [System.Serializable]
     public class Attribute
     {
-        public string Name;
+        public scr_Attributes.Attribute Name;
         public float Value;
     }
 

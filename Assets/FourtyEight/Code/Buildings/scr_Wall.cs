@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Wall : MonoBehaviour, I_IClickable
+public class scr_Wall : MonoBehaviour, I_IClickable
 {
 
     [SerializeField]
@@ -13,8 +13,9 @@ public class Wall : MonoBehaviour, I_IClickable
 
     void Start()
     {
-        healthMax = _Stats.Attributes.Find(x => x.Name == "Maximum Health");
-        health = GetComponent<scr_DataSet>().Attributes.Find(x => x.Name == "Health");
+        healthMax = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Maximum_Health);
+        health = GetComponent<scr_DataSet>().Attributes.Find(x => x.Name == scr_Attributes.Attribute.Health);
+        health.Value = healthMax.Value;
     }
 
     void Update()

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Extractor : MonoBehaviour, I_IClickable
+public class scr_Extractor : MonoBehaviour, I_IClickable
 {
     private enum Resources { None, Iron, Stone, Coal, Crystal_Dida, Crystal_Gale }
 
@@ -24,37 +24,37 @@ public class Extractor : MonoBehaviour, I_IClickable
 
     void Start ()
     {
-        string ressource = string.Empty;
+        scr_Attributes.Attribute ressourcePerScondEnum = scr_Attributes.Attribute.Coal_per_second;
 
         switch(resourceToTake)
         {
             case Resources.Coal:
-                ressource = "Coal";
+                ressourcePerScondEnum = scr_Attributes.Attribute.Coal_per_second;
                 break;
             case Resources.Crystal_Dida:
-                ressource = "Dida";
+                ressourcePerScondEnum = scr_Attributes.Attribute.Dida_per_second;
                 break;
 
             case Resources.Crystal_Gale:
-                ressource = "Gale";
+                ressourcePerScondEnum = scr_Attributes.Attribute.Gale_per_second;
                 break;
 
             case Resources.Iron:
-                ressource = "Iron";
+                ressourcePerScondEnum = scr_Attributes.Attribute.Iron_per_second;
                 break;
 
             case Resources.Stone:
-                ressource = "Stone";
+                ressourcePerScondEnum = scr_Attributes.Attribute.Stone_per_second;
                 break;
 
             case Resources.None:
                 return;
         }
 
-        ressourcePerSecond = _Stats.Attributes.Find(x => x.Name == ressource + " per second");
-        healthMax = _Stats.Attributes.Find(x => x.Name == "Maximum Health");
-        health = GetComponent<scr_DataSet>().Attributes.Find(x => x.Name == "Health");
-        energyCost = _Stats.Attributes.Find(x => x.Name == "Energy costs");
+        ressourcePerSecond = _Stats.Attributes.Find(x => x.Name == ressourcePerScondEnum);
+        healthMax = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Maximum_Health);
+        health = GetComponent<scr_DataSet>().Attributes.Find(x => x.Name == scr_Attributes.Attribute.Health);
+        energyCost = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Energy_costs);
 
         health.Value = healthMax.Value;
         timeLeft = 1;

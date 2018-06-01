@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Name: GlobalData
   m_EditorClassIdentifier: 
   Stone: 0
-  Coal: 0
-  Iron: 32
+  Coal: 1
+  Iron: 0
   CrystalDida: 0
   CrystalGale: 0
-  Energy: 20
+  Energy: 0

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Generator : MonoBehaviour, I_IClickable
+public class scr_Generator : MonoBehaviour, I_IClickable
 {
     [SerializeField]
     private so_DataSet _Stats;
@@ -17,9 +17,9 @@ public class Generator : MonoBehaviour, I_IClickable
 
     private void Start()
     {
-        healthMax = _Stats.Attributes.Find(x => x.Name == "Maximum Health");
-        health = GetComponent<scr_DataSet>().Attributes.Find(x => x.Name == "Health");
-        createsEnergy = _Stats.Attributes.Find(x => x.Name == "Creates energy");
+        healthMax = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Maximum_Health);
+        health = GetComponent<scr_DataSet>().Attributes.Find(x => x.Name == scr_Attributes.Attribute.Health);
+        createsEnergy = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Creates_energy);
         health.Value = healthMax.Value;
         timeLeft = 1; 
     }

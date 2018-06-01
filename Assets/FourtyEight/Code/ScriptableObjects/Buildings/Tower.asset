@@ -9,19 +9,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf0ad81b16b16a64bae7018b4ea29d6f, type: 3}
-  m_Name: Wall
+  m_Name: Tower
   m_EditorClassIdentifier: 
   Name: 
   Desctription: 
-  MainIcon: {fileID: 21300000, guid: b30fc56deaa183849b01629721ceb8e1, type: 3}
+  MainIcon: {fileID: 0}
   Attributes:
   - Name: 0
     Icon: {fileID: 21300000, guid: c2b2fa45a080924438eb29c353296192, type: 3}
-    Value: 100
-    UiOrder: 0
+    Value: 0
+    UiOrder: 1
     TakeFromLocalDataSet: 1
   - Name: 1
     Icon: {fileID: 21300000, guid: c2b2fa45a080924438eb29c353296192, type: 3}
     Value: 100
-    UiOrder: 0
+    UiOrder: 999
+    TakeFromLocalDataSet: 0
+  - Name: 14
+    Icon: {fileID: 0}
+    Value: 0
+    UiOrder: 2
+    TakeFromLocalDataSet: 0
+  - Name: 19
+    Icon: {fileID: 0}
+    Value: 12
+    UiOrder: 3
+    TakeFromLocalDataSet: 0
+  - Name: 18
+    Icon: {fileID: 0}
+    Value: 4
+    UiOrder: 999
+    TakeFromLocalDataSet: 0
+  - Name: 21
+    Icon: {fileID: 0}
+    Value: 2
+    UiOrder: 999
     TakeFromLocalDataSet: 0
