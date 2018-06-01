@@ -23,7 +23,7 @@ public class scr_Tower : MonoBehaviour
     {
         health = GetComponent<scr_DataSet>().Attributes.Find(x => x.Name == scr_Attributes.Attribute.Health);
         healthMax = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Maximum_Health);
-        energyCost = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Energy_costs);
+        energyCost = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Cost_Energy);
         minimumRange = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Minimum_range);
         range = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Range);
         damage = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Damage);

@@ -15,8 +15,7 @@ public class scr_UI_BuildingButton : MonoBehaviour, IPointerDownHandler {
 
     // Use this for initialization
     void Start () {
-        //attToShow = DataSet.Attributes.ToArray().Where(x => x.Name.ToLower().Contains("cost")).ToList();
-
+      //  attToShow = DataSet.Attributes.ToArray().Where(x => x.Name == scr_Attributes.Attribute.cos
     }
 
     // Update is called once per frame
