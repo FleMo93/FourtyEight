@@ -14,4 +14,9 @@ MonoBehaviour:
   Name: 
   Desctription: 
   MainIcon: {fileID: 0}
-  Attributes: []
+  Attributes:
+  - Name: 0
+    Icon: {fileID: 0}
+    Value: 0
+    UiOrder: 0
+    TakeFromLocalDataSet: 0
