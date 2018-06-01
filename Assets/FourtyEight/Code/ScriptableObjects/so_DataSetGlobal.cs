@@ -13,6 +13,8 @@ public class so_DataSetGlobal : ScriptableObject {
     public int CrystalGale;
     public int Energy;
 
+    public GameObject BuildModeActive;
+
     public void ResetStats()
     {
         Stone = 0;
@@ -21,5 +23,6 @@ public class so_DataSetGlobal : ScriptableObject {
         CrystalDida = 0;
         CrystalGale = 0;
         Energy = 0;
+        BuildModeActive = null;
     }
 }
