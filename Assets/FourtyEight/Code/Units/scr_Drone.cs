@@ -18,6 +18,7 @@ public class scr_Drone : MonoBehaviour, I_IDamagable, I_IClickable
     private so_DataSet.Attribute movementSpeed;
     private so_DataSet.Attribute fireRate;
     private so_DataSet.Attribute damage;
+    private so_DataSet.Attribute attackRange;
     private List<Vector3> path;
     private GameObject actualTargetToAttack;
     private GameObject player;
@@ -37,6 +38,7 @@ public class scr_Drone : MonoBehaviour, I_IDamagable, I_IClickable
         movementSpeed = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Movement_Speed);
         fireRate = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Fire_rate);
         damage = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Damage);
+        attackRange = _Stats.Attributes.Find(x => x.Name == scr_Attributes.Attribute.Range);
 
         health.Value = healthMax.Value;
 
@@ -67,8 +69,16 @@ public class scr_Drone : MonoBehaviour, I_IDamagable, I_IClickable
         }
 
         CalculatePath();
-        
-        if(path.Count == 0)
+
+        Ray ray = new Ray(this.transform.position, 
+            (player.transform.position - this.transform.position).normalized);
+        RaycastHit hit;
+
+        Physics.Raycast(ray, out hit, attackRange.Value);
+
+
+        if (path.Count == 0 || 
+            (Vector3.Distance(this.transform.position, player.transform.position) <= attackRange.Value) && hit.collider.gameObject == player)
         {
             state = States.Attack;
         }
@@ -169,16 +179,16 @@ public class scr_Drone : MonoBehaviour, I_IDamagable, I_IClickable
         if (timeToPathCalculation <= 0)
         {
             NavMeshPath path = new NavMeshPath();
-            NavMesh.CalculatePath(this.transform.position, new Vector3(0, 0, 0), NavMesh.AllAreas, path);
+            Vector3 targetPos = player.transform.position;
+            targetPos.y = 0;
+            NavMesh.CalculatePath(this.transform.position, player.transform.position, NavMesh.AllAreas, path);
             this.path.Clear();
-            //this.path.AddRange(path.corners.OrderByDescending(x => Vector3.Distance(this.transform.position, x)));
 
             for(int i = path.corners.Length - 1; i >= 0; i--)
             {
                 this.path.Add(path.corners[i]);
             }
 
-            //this.path.AddRange(path.corners);
             timeToPathCalculation = 1;
         }
     }
