@@ -16,7 +16,6 @@ public class scr_UI_Infobox : MonoBehaviour {
 
     private void OnEnable()
     {
-        Debug.Log("Awake called.");
         Icon.sprite = DataSet.MainIcon;
         Name.text = DataSet.Name;
         Description.text = DataSet.Desctription;
