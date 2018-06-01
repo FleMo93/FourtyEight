@@ -227,3 +227,5 @@ MonoBehaviour:
   Attributes:
   - Name: 0
     Value: 10
+  - Name: 11
+    Value: 10

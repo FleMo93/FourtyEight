@@ -112,6 +112,8 @@ MonoBehaviour:
   Attributes:
   - Name: 0
     Value: 10
+  - Name: 7
+    Value: 10
 --- !u!114 &114660697415426518
 MonoBehaviour:
   m_ObjectHideFlags: 1

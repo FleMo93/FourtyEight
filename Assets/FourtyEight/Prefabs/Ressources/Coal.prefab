@@ -125,3 +125,5 @@ MonoBehaviour:
   Attributes:
   - Name: 0
     Value: 10
+  - Name: 5
+    Value: 10
