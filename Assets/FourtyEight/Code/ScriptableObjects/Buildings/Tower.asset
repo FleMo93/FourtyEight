@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: 
   Desctription: 
-  MainIcon: {fileID: 0}
+  MainIcon: {fileID: 21300000, guid: aa947026379d1c648b8b932cff253515, type: 3}
   Attributes:
   - Name: 0
     Icon: {fileID: 21300000, guid: c2b2fa45a080924438eb29c353296192, type: 3}
@@ -27,7 +27,7 @@ MonoBehaviour:
     TakeFromLocalDataSet: 0
   - Name: 14
     Icon: {fileID: 0}
-    Value: 0
+    Value: 5
     UiOrder: 2
     TakeFromLocalDataSet: 0
   - Name: 19
@@ -61,6 +61,11 @@ MonoBehaviour:
     UiOrder: 999
     TakeFromLocalDataSet: 0
   - Name: 23
+    Icon: {fileID: 0}
+    Value: 10
+    UiOrder: 999
+    TakeFromLocalDataSet: 0
+  - Name: 26
     Icon: {fileID: 0}
     Value: 10
     UiOrder: 999

@@ -52,16 +52,16 @@ MonoBehaviour:
     TakeFromLocalDataSet: 0
   - Name: 14
     Icon: {fileID: 21300000, guid: a833088f8979e9c4e80e0f24dae6316e, type: 3}
-    Value: 1
+    Value: 2
     UiOrder: 999
     TakeFromLocalDataSet: 0
   - Name: 22
     Icon: {fileID: 21300000, guid: a833088f8979e9c4e80e0f24dae6316e, type: 3}
-    Value: 5
+    Value: 10
     UiOrder: 999
     TakeFromLocalDataSet: 0
   - Name: 23
     Icon: {fileID: 21300000, guid: a833088f8979e9c4e80e0f24dae6316e, type: 3}
-    Value: 3
+    Value: 10
     UiOrder: 999
     TakeFromLocalDataSet: 0
