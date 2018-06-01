@@ -55,8 +55,9 @@ GameObject:
   - component: {fileID: 224307939609168210}
   - component: {fileID: 222819073446030486}
   - component: {fileID: 114759230313536216}
+  - component: {fileID: 114060032624054758}
   m_Layer: 5
-  m_Name: Panel Life
+  m_Name: Panel Stats
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1836,6 +1837,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114060032624054758
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1049393022979252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6543bb541cd42a24f8ca5657b6779832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DataSet: {fileID: 11400000, guid: ee7349bcfa0039646a603a1655ce942f, type: 2}
+  Healthbar: {fileID: 114209152095640172}
+  Healthtext: {fileID: 114633454216049120}
 --- !u!114 &114069350585366904
 MonoBehaviour:
   m_ObjectHideFlags: 1
