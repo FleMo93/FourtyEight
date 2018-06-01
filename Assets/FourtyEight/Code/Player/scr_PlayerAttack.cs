@@ -53,6 +53,7 @@ public class scr_PlayerAttack : MonoBehaviour
         if (Physics.Raycast(ray, out hit, range.Value))
         {
             Transform objectHit = hit.transform;
+            bool damageDeal = false;
             if (objectHit)
             {
                 I_IDamagable targetDamagable = objectHit.GetComponent<I_IDamagable>();
@@ -62,11 +63,43 @@ public class scr_PlayerAttack : MonoBehaviour
                     if (sotargetHealth.TakeFromLocalDataSet)
                     {
                         scr_DataSet.Attribute targetHealth = targetDamagable.GetScrDataSet().Attributes.Find(x => x.Name == scr_Attributes.Attribute.Health);
+                        
 
                         if (targetHealth != null)
                         {
                             targetHealth.Value -= dmg.Value;
+                            damageDeal = true;
                         }
+                    }
+
+                    if (damageDeal)
+                    {
+                        so_DataSet.Attribute typeOfOreBonus = targetDamagable.GetSoDataSet().Attributes.Find(x => x.Name == scr_Attributes.Attribute.Gale);
+                        if (typeOfOreBonus != null)
+                        {
+                            _StatsGlobal.CrystalGale += (int)typeOfOreBonus.Value;
+                        }if (typeOfOreBonus == null)
+                        {
+                            typeOfOreBonus = targetDamagable.GetSoDataSet().Attributes.Find(x => x.Name == scr_Attributes.Attribute.Dida);
+                            _StatsGlobal.CrystalDida += (int)typeOfOreBonus.Value;
+                        }
+                        if (typeOfOreBonus == null)
+                        {
+                            typeOfOreBonus = targetDamagable.GetSoDataSet().Attributes.Find(x => x.Name == scr_Attributes.Attribute.Iron);
+                            _StatsGlobal.Iron += (int)typeOfOreBonus.Value;
+                        }
+                        if (typeOfOreBonus == null)
+                        {
+                            typeOfOreBonus = targetDamagable.GetSoDataSet().Attributes.Find(x => x.Name == scr_Attributes.Attribute.Stone);
+                            _StatsGlobal.Stone += (int)typeOfOreBonus.Value;
+                        }
+                        if (typeOfOreBonus == null)
+                        {
+                            typeOfOreBonus = targetDamagable.GetSoDataSet().Attributes.Find(x => x.Name == scr_Attributes.Attribute.Coal);
+                            _StatsGlobal.Coal += (int)typeOfOreBonus.Value;
+                        }
+
+
                     }
                     //else //nothing!
                     //{
