@@ -32,4 +32,8 @@ public class scr_ButtonFunctions : MonoBehaviour {
     {
         _gameObject.SetActive(true);
     }
+    public void BtnClick_ResetGame(so_DataSetGlobal DataSet)
+    {
+        DataSet.ResetStats();
+    }
 }

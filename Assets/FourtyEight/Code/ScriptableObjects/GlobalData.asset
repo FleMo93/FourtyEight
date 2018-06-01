@@ -17,7 +17,7 @@ MonoBehaviour:
   CrystalDida: 0
   CrystalGale: 0
   Energy: 0
-  time_Level: 0
-  time_Game: 0
-  time_forNextWave: 0
+  time_Level: 6.425418
+  time_Game: 7.1915255
+  time_forNextWave: 295.5746
   BuildModeActive: {fileID: 0}
