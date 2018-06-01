@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/FourtyEight/Scenes/MainMenue.unity
     guid: 733acff50d74eea49ae13a40408acb34
   - enabled: 1
-    path: Assets/FourtyEight/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/FourtyEight/Scenes/scn_Level_1.unity
+    guid: 2f343c91bcaa1d14c8cca29ea3509396
   m_configObjects: {}
